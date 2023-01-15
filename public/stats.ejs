@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/style.css">
     <link rel="icon" type="image/x-icon" href="public/icon.svg">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <title>Unterschriften JUSO JS Bielingue Signatures</title>
 </head>
+
 <body>
     <div id="top">
-        <div id="title"> 
+        <div id="title">
             <h1>Zukunft Initative | Initative pour l'avenire</h1>
         </div>
         <div id="total">
 
-        </div>    
+        </div>
     </div>
     <div id="bottom">
         <div id="monat"></div>
         <div id="leaderboard">
             <p>
                 <script>
-                    
+                    chart = StackedBarChart(stateages, {
+                        x: d => d.population,
+                        y: d => d.state,
+                        yDomain: d3.groupSort(
+                            stateages,
+                            (D) => D[0].population / d3.sum(D, d => d.population), // proportion of first age group
+                            d => d.state // sort y by x
+                        ),
+                        zDomain: ages,
+                        colors: d3.schemeSpectral[ages.length],
+                        width
+                    })
                 </script>
             </p>
         </div>
@@ -33,4 +47,5 @@
         </div>
     </div>
 </body>
+
 </html>
