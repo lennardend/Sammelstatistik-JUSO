@@ -11,6 +11,7 @@
 #top {
     height: 50vh;
     width: 100vw;
+    display: flex;
     flex-direction: column;
 }
 
@@ -26,6 +27,9 @@
     height: 25vh;
     width: 100vw;
     background-color: cadetblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #total {
@@ -50,18 +54,19 @@
     height: 50vh;
     width: 33vw;
     background-color: darkviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-h1 {
-    justify-self: center;
-    align-items: center;
-
-    size: 2vw;
+h1 {    
+    size: 4vw;
     color: #E42320;
-    outline-color: white;
-    outline-width: 0.05vw;
+    -webkit-text-stroke-width: 0.1vw;
+    -webkit-text-stroke-color: black;
 }
 
 p {
-
+    size: 2vw;
+    color: #000000;
 }
