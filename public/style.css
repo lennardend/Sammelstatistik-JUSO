@@ -38,19 +38,19 @@
     background-color: coral;
 }
 
-#monat{
+#monat {
     height: 50vh;
     width: 33vw;
     background-color: chartreuse;
 }
 
-#leaderboard{
+#leaderboard {
     height: 50vh;
     width: 33vw;
     background-color: darkorange;
 }
 
-#altjusos{
+#altjusos {
     height: 50vh;
     width: 33vw;
     background-color: darkviolet;
@@ -59,7 +59,7 @@
     align-items: center;
 }
 
-h1 {    
+h1 {
     size: 4vw;
     color: #E42320;
     -webkit-text-stroke-width: 0.1vw;
@@ -75,23 +75,23 @@ p {
 
 @media only screen and (max-width: 1200px) {
 
-    #top{
-        height:fit-content;
+    #top {
+        height: fit-content;
     }
 
     #bottom {
-        height:fit-content;
+        height: fit-content;
         flex-direction: column;
 
     }
 
-    #monat{
+    #monat {
         height: 40vh;
         width: 100vw;
 
     }
-    
-    #leaderboard{
+
+    #leaderboard {
         height: 40vh;
         width: 100vw;
     }
