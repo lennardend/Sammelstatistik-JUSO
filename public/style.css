@@ -73,29 +73,31 @@ p {
     text-align: center;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
 
     #top{
-        height: 50vh;
+        height:fit-content;
     }
 
     #bottom {
-        height: 50vh;
+        height:fit-content;
         flex-direction: column;
+
     }
 
     #monat{
-        height: 50vh;
+        height: 40vh;
         width: 100vw;
+
     }
     
     #leaderboard{
-        height: 50vh;
+        height: 40vh;
         width: 100vw;
     }
 
     #altjusos {
-        height: 50vh;
+        height: 40vh;
         width: 100vw;
     }
 }
