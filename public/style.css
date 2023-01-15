@@ -17,7 +17,9 @@
 #bottom {
     height: 50vh;
     width: 100vw;
+    display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 
 #title {
@@ -51,6 +53,9 @@
 }
 
 h1 {
+    justify-self: center;
+    align-items: center;
+
     size: 2vw;
     color: #E42320;
     outline-color: white;
