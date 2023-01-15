@@ -1,6 +1,7 @@
-. {
+* {
     margin: 0;
     padding: 0;
+    font-family: "Comic Sans MS", "Comic Sans", sans-serif;
 }
 
 #body {
@@ -33,26 +34,29 @@
 
 #monat{
     height: 50vh;
-    width: 33.33vw;
+    width: 33vw;
     background-color: chartreuse;
 }
 
 #leaderboard{
     height: 50vh;
-    width: 33.33vw;
+    width: 33vw;
     background-color: darkorange;
 }
 
 #altjusos{
     height: 50vh;
-    width: 33.33vw;
+    width: 33vw;
     background-color: darkviolet;
 }
 
 h1 {
-    font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+    size: 2vw;
+    color: #E42320;
+    outline-color: white;
+    outline-width: 0.05vw;
 }
 
 p {
-    font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+
 }
