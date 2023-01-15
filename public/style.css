@@ -1,6 +1,10 @@
+. {
+    margin: 0;
+    padding: 0;
+}
+
 #body {
     display: flex;
-    font-family: "Comic Sans MS", "Comic Sans", sans-serif;
 }
 
 #top {
@@ -30,7 +34,7 @@
 #monat{
     height: 50vh;
     width: 33.33vw;
-    background-color: darkcyan;
+    background-color: chartreuse;
 }
 
 #leaderboard{
@@ -43,4 +47,12 @@
     height: 50vh;
     width: 33.33vw;
     background-color: darkviolet;
+}
+
+h1 {
+    font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+}
+
+p {
+    font-family: "Comic Sans MS", "Comic Sans", sans-serif;
 }
