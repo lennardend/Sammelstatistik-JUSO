@@ -1,9 +1,16 @@
+import htmlExpress, { staticIndexHandler } from 'html-express-js';
+
 const express = require('express');
 const app = express();
+const __dirname = resolve();
+
+app.set('view engine', 'js');
+app.set('views', `${__dirname}/public`)
 
 app.get('/', (req, res) => {
-  const name = process.env.NAME || 'sffasdfd';
-  res.send(`Hello ${name}!`);
+    res.render('stats', {
+        test: 'Deine Mutter'
+    })
 });
 
 const port = parseInt(process.env.PORT) || 8080;
