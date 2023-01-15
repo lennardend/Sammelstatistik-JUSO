@@ -1,0 +1,45 @@
+#body {
+    display: flex;
+}
+
+#top {
+    height: 50vh;
+    width: 100vw;
+    flex-direction: column;
+}
+
+#bottom {
+    height: 50vh;
+    width: 100vw;
+    flex-direction: row;
+}
+
+#title {
+    height: 25vh;
+    width: 100vw;
+    background-color: cadetblue;
+}
+
+#total {
+    height: 25vh;
+    width: 100vw;
+    background-color: coral;
+}
+
+#monat{
+    height: 50vh;
+    width: 33.33vw;
+    background-color: darkcyan;
+}
+
+#leaderboard{
+    height: 50vh;
+    width: 33.33vw;
+    background-color: darkorange;
+}
+
+#altjusos{
+    height: 50vh;
+    width: 33.33vw;
+    background-color: darkviolet;
+}
