@@ -1,10 +1,7 @@
-import htmlExpress, { staticIndexHandler } from 'html-express-js';
-
 const express = require('express');
 const app = express();
-const __dirname = resolve();
 
-app.set('view engine', 'js');
+app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/public`)
 
 app.get('/', (req, res) => {
