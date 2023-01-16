@@ -88,12 +88,9 @@ p {
     color: #000;
 }
 
-#unterschriften {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 70vw;
-    height: 12vh;
+#graph1 {
+    width: 60vw;
+    /*height: 10vh; not working*/
 }
 
 

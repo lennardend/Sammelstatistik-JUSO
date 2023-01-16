@@ -19,25 +19,38 @@
             <h1>Zukunft Initative | Initative pour l'avenire</h1>
         </div>
         <div id="total">
-            <p class="red">gesamelt | collecté
+            <p class="red">Gesamelt | Collecté
                 </br>
                 <%= test %>
             </p>
-
-            <img href="/public/stats.svg"/>
+            <svg id="graph1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3500 300">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            fill: #e42320;
+                        }
+                    </style>
+                </defs>
+                <rect id="bg1" width="3500" height="300" />
+                <rect id="vg1" class="cls-1" width="0" height="300" />
+            </svg>
 
             <script>
-                var gesamelt = 0.0364;
-                var total = 0.3500 - gesamelt;
+                //total der unterschriften
+                const total = 3500;
 
-                console.log(gesamelt);
-                console.log(total);
+                //In die untere variable kann die anzahl der gesammelten unterschriften eingespiet werden (momentan noch als absolute zahl, benötigt verbindung zu monogDB)
+                var gesamelt = 364;
+
+                //Einfach dreisastzt um einen faktor zu generiren (bruch)
+                var faktor1 = 1 / total * gesamelt;
+                console.log(faktor1);
 
                 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-                const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-
                 console.log(vw);
-                console.log(vh);
+
+                //Der Oben berechnete Faktor kann mit der gesamtbreite mutipliziert werden um als breite des elementes welches im vodergrunt ist eingesetzt zu werden
+                document.getElementById("vg1").style.width = faktor1 * vw;
             </script>
 
             <p class="black">Ziel | Objectif
@@ -49,13 +62,15 @@
         <div id="monat"></div>
         <div id="leaderboard">
             <p>leaderboard
-            </br>
-            <%= test %></p>
+                </br>
+                <%= test %>
+            </p>
         </div>
         <div id="altjusos">
             <p>Alt JUSOs | vieux JUSOs
-            </br>
-            <%= test %></p>
+                </br>
+                <%= test %>
+            </p>
         </div>
     </div>
 </body>
