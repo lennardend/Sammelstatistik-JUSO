@@ -34,9 +34,13 @@
 }
 
 #total {
-    height: /*25*/100vh;
+    height: /*25*/50vh;
     width: 100vw;
     background-color: coral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 #monat {
@@ -61,7 +65,7 @@
 }
 
 h1 {
-    size: 4vw;
+    size: 32px;
     color: #E42320;
     -webkit-text-stroke-width: 0.1vw;
     -webkit-text-stroke-color: black;
@@ -72,6 +76,23 @@ p {
     size: 2vw;
     color: #000000;
     text-align: center;
+}
+
+svg {
+    height: 20vh;
+    width: 60vw;
+}
+
+script, .domain {
+    display: none;
+}
+
+script, line {
+    display: none;
+}
+
+script, text {
+    display: none;
 }
 
 @media only screen and (max-width: 1200px) {

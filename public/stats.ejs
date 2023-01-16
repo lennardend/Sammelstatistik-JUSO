@@ -17,11 +17,12 @@
             <h1>Zukunft Initative | Initative pour l'avenire</h1>
         </div>
         <div id="total">
+            <p><%= test %></p>
             <script>
                 // set the dimensions and margins of the graph
-                var margin = { top: 0, right: 30, bottom: 20, left: 0 },
-                    width = 460 - margin.left - margin.right,
-                    height = 400 - margin.top - margin.bottom;
+                var margin = { top: 0, right: 0, bottom: 0, left: 0 },
+                    width = 0.6*document.documentElement.clientWidth;
+                    height = 0.2*document.documentElement.clientHeight;
 
                 // append the svg object to the body of the page
                 var svg = d3.select("#total")
@@ -33,8 +34,7 @@
                         "translate(" + margin.left + "," + margin.top + ")");
 
                 // Parse the Data
-                d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv", function (data) {
-
+                d3.csv("public/stats.csv", function (data) {
 
                     // List of subgroups = header of the csv files = soil condition here
                     var subgroups = data.columns.slice(1)
@@ -61,7 +61,7 @@
                     // color palette = one color per subgroup
                     var color = d3.scaleOrdinal()
                         .domain(subgroups)
-                        .range(['#e41a1c', '#377eb8', '#4daf4a'])
+                        .range(['#e42320', '#000000'])
 
                     // Normalize the data -> sum of each group must be 100!
                     console.log(data)
@@ -97,6 +97,7 @@
                 })
 
             </script>
+            <p>3500</p>
         </div>
     </div>
     <div id="bottom">
