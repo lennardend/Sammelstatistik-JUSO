@@ -47,7 +47,11 @@
     height: 50vh;
     width: 33vw;
     background-color: chartreuse;
-}   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+   
 
 #leaderboard {
     height: 50vh;
@@ -90,6 +94,11 @@ p {
 
 #graph1 {
     width: 60vw;
+    /*height: 10vh; not working*/
+}
+
+#graph2 {
+    height: 40vh;
     /*height: 10vh; not working*/
 }
 
