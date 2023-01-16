@@ -13,6 +13,7 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
+    height: fit-content;
 }
 
 #bottom {
@@ -33,7 +34,7 @@
 }
 
 #total {
-    height: 25vh;
+    height: /*25*/100vh;
     width: 100vw;
     background-color: coral;
 }
