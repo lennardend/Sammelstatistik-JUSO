@@ -23,18 +23,23 @@
                 </br>
                 <%= test %>
             </p>
-            <a href="public/stats.svg"></a>
-            <script>
 
-                var gesamelt = 364;
-                var total = 3500 - gesamelt;
+            <img href="/public/stats.svg"/>
+
+            <script>
+                var gesamelt = 0.0364;
+                var total = 0.3500 - gesamelt;
 
                 console.log(gesamelt);
                 console.log(total);
 
-                
+                const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+                const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
+                console.log(vw);
+                console.log(vh);
             </script>
+
             <p class="black">Ziel | Objectif
                 </br>
                 3500</p>
@@ -43,14 +48,14 @@
     <div id="bottom">
         <div id="monat"></div>
         <div id="leaderboard">
-            <p>
-
-            </p>
+            <p>leaderboard
+            </br>
+            <%= test %></p>
         </div>
         <div id="altjusos">
-            <p>
-                <%= test %>
-            </p>
+            <p>Alt JUSOs | vieux JUSOs
+            </br>
+            <%= test %></p>
         </div>
     </div>
 </body>

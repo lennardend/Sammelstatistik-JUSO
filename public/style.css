@@ -34,7 +34,7 @@
 }
 
 #total {
-    height: /*25*/50vh;
+    height:25vh;
     width: 100vw;
     background-color: coral;
     display: flex;
@@ -47,12 +47,15 @@
     height: 50vh;
     width: 33vw;
     background-color: chartreuse;
-}
+}   
 
 #leaderboard {
     height: 50vh;
     width: 33vw;
     background-color: darkorange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #altjusos {
@@ -74,44 +77,23 @@ h1 {
 
 p {
     size: 2vw;
-    color: #000000;
     text-align: center;
 }
 
-svg {
-    height: 20vh;
-    width: 60vw;
-}
-
-script, .domain {
-    display: none;
-}
-
-script, line {
-    display: none;
-}
-
-script, text {
-    display: none;
-}
-
-/*test*/
-#bar{
-    width:70vw;
-    height:20vh ;
-   }
-   
-   #bar > svg{  
-    display:block;
-   }
-/*test*/
-
-.red{
+.red {
     color: #E42320;
 }
 
 .black {
     color: #000;
+}
+
+#unterschriften {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70vw;
+    height: 12vh;
 }
 
 
