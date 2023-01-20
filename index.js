@@ -4,7 +4,7 @@ const app = express();
 
 app.get('/api/*', (req, res) => {
   var func = req.path;
-  res.send(require(`.${func}.js`).data);
+  res.send(require(`.${func}.js`).items);
 });
 
 app.use('/public', express.static(`${__dirname}/public`));

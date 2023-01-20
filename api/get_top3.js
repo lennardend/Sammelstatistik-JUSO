@@ -1,4 +1,4 @@
-const db = require('./connect_db.js')
+const db = require('./db.js')
 
 //JSON mit Top 3 Jusos
 

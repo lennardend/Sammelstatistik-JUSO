@@ -1,7 +1,7 @@
-require('./connect_db.js')
+const db = require('./db.js');
 
+var items = [];
 
+db.findInZiele('total', items.push);
 
-
-
-module.exports = { data }
+module.exports = { items };
