@@ -1,7 +1,7 @@
 {
   "name": "sammelstatistik",
   "description": "Zeigt aktuelle Anzahl gesammelter Unterschriften für 'Initiative für eine Zukunft'",
-  "version": "1.0.0",
+  "version": "420.69.0",
   "private": true,
   "main": "index.js",
   "scripts": {
@@ -10,12 +10,11 @@
   "engines": {
     "node": ">=12.0.0"
   },
-  "author": "Google LLC",
+  "author": "Lenni und Jonas <3",
   "license": "Apache-2.0",
   "dependencies": {
-    "express": "*",
-    "ejs": "*",
-    "mongodb": "*",
-    "@google-cloud/secret-manager": "*"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^4.13.0"
   }
 }
