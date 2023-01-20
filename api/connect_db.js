@@ -6,4 +6,4 @@ const database = client.db('sammelstatistik');
 const unterschriften = database.collection('unterschriften');
 const ziele = database.collection('ziele');
 
-module.exports = { unterschriften, ziele }
+module.exports = { client, unterschriften, ziele }
