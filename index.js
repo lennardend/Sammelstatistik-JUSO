@@ -1,16 +1,15 @@
 const express = require('express');
 const app = express();
 
-app.set('view engine', 'ejs');
-app.set('views', `${__dirname}/public`);
+app.get('/api/*', (req, res) => {
+  var func = req.path;
+  res.send(require(`.${func}.js`).data);
+});
 
 app.use('/public', express.static(`${__dirname}/public`));
 
-
-app.get('/', (req, res) => {
-    res.render('stats', {
-        test: 'asdfadsf'
-    })
+app.get('/', (req, res) =>{
+  res.sendFile(`${__dirname}/public/stats.html`);
 });
 
 const port = parseInt(process.env.PORT) || 8080;
