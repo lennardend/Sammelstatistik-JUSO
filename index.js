@@ -2,15 +2,18 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
-app.get('/api/*', (req, res) => {
-  var func = req.path;
-  res.send(require(`.${func}.js`).items);
-});
+app.set('view engine', 'ejs');
 
 app.use('/public', express.static(`${__dirname}/public`));
 
 app.get('/', (req, res) =>{
-  res.sendFile(`${__dirname}/public/stats.ejs`);
+  res.render(`${__dirname}/public/stats`, {
+    test: "Deine Mutter",
+    gesamelt: 300,
+    gesameltmonat: 25,
+    leaderboard: "Völker hört die Signale",
+    altjusos: "Jonas stinkt hih",
+  });
 });
 
 const port = parseInt(process.env.PORT);
