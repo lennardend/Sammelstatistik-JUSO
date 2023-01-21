@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/style.css">
     <link rel="icon" type="image/x-icon" href="public/icon.svg">
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@4.13.0/build/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/taucharts@2/dist/taucharts.min.js" type="text/javascript"></script>
     <title>Unterschriften JUSO JS Bielingue Signatures</title>
 </head>
 
@@ -17,22 +18,123 @@
             <h1>Zukunft Initative | Initative pour l'avenire</h1>
         </div>
         <div id="total">
-            <p>gesamelt | collecté</p>
-            <script src="public/graph.js"></script>
-            <p>Ziel | Objectif 
-            </br>
+            <p class="red">Gesamelt | Collecté
+                </br>
+                <%= test %>
+            </p>
+
+            <svg id="graph1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3500 300">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            fill: #e42320;
+                        }
+                    </style>
+                </defs>
+                <rect id="bg1" class="cls-1" width="364" height="300" />
+                <path d="m2994,6v288H6V6h2988m6-6H0v300h3000V0h0Z" />
+            </svg>
+
+            <script>
+                //total der unterschriften
+                const total = 3000;
+
+                //In die untere variable kann die anzahl der gesammelten unterschriften eingespiet werden (momentan noch als absolute zahl, benötigt verbindung zu monogDB)
+                var gesamelt = 380;
+
+                //Einfach dreisastzt um einen faktor zu generiren (bruch)
+                var faktor1 = 1 / total * gesamelt;
+                console.log(faktor1);
+
+                //Der Oben berechnete Faktor kann mit der gesamtbreite mutipliziert werden um als breite des elementes welches im vodergrunt ist eingesetzt zu werden
+                document.getElementById("bg1").style.width = faktor1 * total;
+            </script>
+
+            <p class="black">Ziel | Objectif
+                </br>
                 3500</p>
         </div>
     </div>
     <div id="bottom">
-        <div id="monat"></div>
-        <div id="leaderboard">
-            <p>
+        <div id="monat">
 
+            <!--<svg id="graph2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 200">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            fill: #e42320;
+                        }
+                    </style>
+                </defs>
+                <rect id="bg2" class="cls-1" width="40" height="200" y="180" />
+                <path d="m39,1v198H1V1h38m1-1H0v200h40V0h0Z" />
+            </svg>
+        
+        
+        
+        
+        
+     <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 40 200">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            fill: #e42320;
+                        }
+                    </style>
+                </defs>
+                <rect class="cls-1" y="100" width="40" height="100" />
+                <path d="m39.5.5v199H.5V.5h39m.5-.5H0v200h40V0h0Z" />
+            </svg>
+        
+        
+        
+        -->
+
+
+
+
+
+
+            <svg id="graph2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 200">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            fill: #e42320;
+                        }
+                    </style>
+                </defs>
+                <rect id="bg2" class="cls-1" width="364" height="300" y="200" />
+                <path d="m39,1v198H1V1h38m1-1H0v200h40V0h0Z" />
+            </svg>
+
+            <script>
+                const totalmonat = 200;
+
+                var gesameltmonat = 34;
+
+                var faktor2 = 1 / totalmonat * gesameltmonat;
+                console.log(faktor2);
+
+                document.getElementById("bg2").style.height = faktor2 * totalmonat;
+
+                var margintop = totalmonat - gesameltmonat;
+                console.log(margintop);
+
+                document.getElementById("bg2").style.height = faktor2 * totalmonat;
+
+            </script>
+
+        </div>
+        <div id="leaderboard">
+            <p>leaderboard
+                </br>
+                <%= test %>
             </p>
         </div>
         <div id="altjusos">
-            <p>
+            <p>Alt JUSOs | vieux JUSOs
+                </br>
                 <%= test %>
             </p>
         </div>

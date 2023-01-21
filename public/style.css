@@ -34,7 +34,7 @@
 }
 
 #total {
-    height: /*25*/50vh;
+    height:25vh;
     width: 100vw;
     background-color: coral;
     display: flex;
@@ -47,12 +47,19 @@
     height: 50vh;
     width: 33vw;
     background-color: chartreuse;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+   
 
 #leaderboard {
     height: 50vh;
     width: 33vw;
     background-color: darkorange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #altjusos {
@@ -74,26 +81,27 @@ h1 {
 
 p {
     size: 2vw;
-    color: #000000;
     text-align: center;
 }
 
-svg {
-    height: 20vh;
+.red {
+    color: #E42320;
+}
+
+.black {
+    color: #000;
+}
+
+#graph1 {
     width: 60vw;
+    /*height: 10vh; not working*/
 }
 
-script, .domain {
-    display: none;
+#graph2 {
+    height: 40vh;
+    /*height: 10vh; not working*/
 }
 
-script, line {
-    display: none;
-}
-
-script, text {
-    display: none;
-}
 
 @media only screen and (max-width: 1200px) {
 
