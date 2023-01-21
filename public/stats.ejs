@@ -20,7 +20,7 @@
         <div id="total">
             <p class="red">Gesamelt | Collecté
                 </br>
-                <%= test %>
+                <%= gesamelt %>
             </p>
 
             <svg id="graph1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3500 300">
@@ -121,7 +121,7 @@
                 var margintop = totalmonat - gesameltmonat;
                 console.log(margintop);
 
-                document.getElementById("bg2").style.height = faktor2 * totalmonat;
+                document.getElementById("bg2").setAttribute('y', margintop );
 
             </script>
 
