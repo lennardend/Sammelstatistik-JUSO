@@ -31,23 +31,23 @@
                         }
                     </style>
                 </defs>
-                <rect id="bg1" class="cls-1" width="364" height="300" />
+                <rect id="bg1" class="cls-1" width="3000" height="300" />
                 <path d="m2994,6v288H6V6h2988m6-6H0v300h3000V0h0Z" />
             </svg>
 
             <script>
                 //total der unterschriften
-                const total = 3000;
+                const total = <%= total %>;
 
                 //In die untere variable kann die anzahl der gesammelten unterschriften eingespiet werden (momentan noch als absolute zahl, benötigt verbindung zu monogDB)
                 var gesamelt = <%= gesamelt %>;
 
                 //Einfach dreisastzt um einen faktor zu generiren (bruch)
                 var faktor1 = 1 / total * gesamelt;
-                console.log(faktor1);
 
+                console.log(faktor1);
                 //Der Oben berechnete Faktor kann mit der gesamtbreite mutipliziert werden um als breite des elementes welches im vodergrunt ist eingesetzt zu werden
-                document.getElementById("bg1").style.width = faktor1 * total;
+                document.getElementById("bg1").style.width = 3000 * faktor1;
             </script>
 
             <p class="black">Ziel | Objectif
@@ -57,45 +57,6 @@
     </div>
     <div id="bottom">
         <div id="monat">
-
-            <!--<svg id="graph2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 200">
-                <defs>
-                    <style>
-                        .cls-1 {
-                            fill: #e42320;
-                        }
-                    </style>
-                </defs>
-                <rect id="bg2" class="cls-1" width="40" height="200" y="180" />
-                <path d="m39,1v198H1V1h38m1-1H0v200h40V0h0Z" />
-            </svg>
-        
-        
-        
-        
-        
-     <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 40 200">
-                <defs>
-                    <style>
-                        .cls-1 {
-                            fill: #e42320;
-                        }
-                    </style>
-                </defs>
-                <rect class="cls-1" y="100" width="40" height="100" />
-                <path d="m39.5.5v199H.5V.5h39m.5-.5H0v200h40V0h0Z" />
-            </svg>
-        
-        
-        
-        -->
-
-
-
-
-
-
             <svg id="graph2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 200">
                 <defs>
                     <style>
@@ -104,24 +65,18 @@
                         }
                     </style>
                 </defs>
-                <rect id="bg2" class="cls-1" width="364" height="300" y="200" />
+                <rect id="bg2" class="cls-1" width="364" height="200" y="0" />
                 <path d="m39,1v198H1V1h38m1-1H0v200h40V0h0Z" />
             </svg>
 
             <script>
-                const totalmonat = 200;
-
+                const totalmonat = <%= totalmonat %>;
                 var gesameltmonat = <%= gesameltmonat %>;
-
                 var faktor2 = 1 / totalmonat * gesameltmonat;
-                console.log(faktor2);
-
-                document.getElementById("bg2").style.height = faktor2 * totalmonat;
+                document.getElementById("bg2").style.height = 200 * faktor2;
 
                 var margintop = totalmonat - gesameltmonat;
-                console.log(margintop);
-
-                document.getElementById("bg2").setAttribute('y', margintop );
+                document.getElementById("bg2").setAttribute('y', margintop);
 
             </script>
 
