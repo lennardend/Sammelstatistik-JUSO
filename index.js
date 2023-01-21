@@ -10,7 +10,7 @@ app.get('/api/*', (req, res) => {
 app.use('/public', express.static(`${__dirname}/public`));
 
 app.get('/', (req, res) =>{
-  res.sendFile(`${__dirname}/public/stats.html`);
+  res.sendFile(`${__dirname}/public/stats.ejs`);
 });
 
 const port = parseInt(process.env.PORT);
