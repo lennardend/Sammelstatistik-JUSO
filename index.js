@@ -8,8 +8,9 @@ app.use('/public', express.static(`${__dirname}/public`));
 
 app.get('/', (req, res) =>{
   res.render(`${__dirname}/public/stats`, {
-    test: "Deine Mutter",
+    total: 3000,
     gesamelt: 300,
+    totalmonat: 300,
     gesameltmonat: 25,
     leaderboard: "Völker hört die Signale",
     altjusos: "Jonas stinkt hih",
