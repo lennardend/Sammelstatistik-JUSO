@@ -40,7 +40,7 @@
                 const total = 3000;
 
                 //In die untere variable kann die anzahl der gesammelten unterschriften eingespiet werden (momentan noch als absolute zahl, benötigt verbindung zu monogDB)
-                var gesamelt = 380;
+                var gesamelt = <%= gesamelt %>;
 
                 //Einfach dreisastzt um einen faktor zu generiren (bruch)
                 var faktor1 = 1 / total * gesamelt;
@@ -111,7 +111,7 @@
             <script>
                 const totalmonat = 200;
 
-                var gesameltmonat = 34;
+                var gesameltmonat = <%= gesameltmonat %>;
 
                 var faktor2 = 1 / totalmonat * gesameltmonat;
                 console.log(faktor2);
@@ -129,13 +129,13 @@
         <div id="leaderboard">
             <p>leaderboard
                 </br>
-                <%= test %>
+                <%= leaderboard %>
             </p>
         </div>
         <div id="altjusos">
             <p>Alt JUSOs | vieux JUSOs
                 </br>
-                <%= test %>
+                <%= altjusos %>
             </p>
         </div>
     </div>
