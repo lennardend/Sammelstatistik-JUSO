@@ -75,7 +75,9 @@
                 var faktor2 = 1 / totalmonat * gesameltmonat;
                 document.getElementById("bg2").style.height = 200 * faktor2;
 
-                var margintop = totalmonat - gesameltmonat;
+                console.log(faktor2)
+
+                var margintop = 200 - gesameltmonat;
                 document.getElementById("bg2").setAttribute('y', margintop);
 
             </script>
