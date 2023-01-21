@@ -27,7 +27,6 @@
 #title {
     height: 25vh;
     width: 100vw;
-    background-color: cadetblue;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +35,6 @@
 #total {
     height:25vh;
     width: 100vw;
-    background-color: coral;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -46,7 +44,6 @@
 #monat {
     height: 50vh;
     width: 33vw;
-    background-color: chartreuse;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +53,6 @@
 #leaderboard {
     height: 50vh;
     width: 33vw;
-    background-color: darkorange;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,22 +61,21 @@
 #altjusos {
     height: 50vh;
     width: 33vw;
-    background-color: darkviolet;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 h1 {
-    size: 32px;
+    size: 20vw;
     color: #E42320;
     -webkit-text-stroke-width: 0.1vw;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
     text-align: center;
 }
 
 p {
-    size: 2vw;
+    size: 3vw;
     text-align: center;
 }
 
@@ -88,9 +83,6 @@ p {
     color: #E42320;
 }
 
-.black {
-    color: #000;
-}
 
 #graph1 {
     width: 60vw;
@@ -100,6 +92,14 @@ p {
 #graph2 {
     height: 40vh;
     /*height: 10vh; not working*/
+}
+
+#textmonat{
+    height: 40vh;
+    margin-left: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 

@@ -18,11 +18,10 @@
             <h1>Zukunft Initative | Initative pour l'avenire</h1>
         </div>
         <div id="total">
-            <p class="red">Gesamelt | Collecté
+            <p class="red">Gesamelt | Récoltées
                 </br>
                 <%= gesamelt %>
             </p>
-
             <svg id="graph1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3500 300">
                 <defs>
                     <style>
@@ -32,27 +31,18 @@
                     </style>
                 </defs>
                 <rect id="bg1" class="cls-1" width="3000" height="300" />
-                <path d="m2994,6v288H6V6h2988m6-6H0v300h3000V0h0Z" />
+                <path d="m2993,7v286H7V7h2986m7-7H0v300h3000V0h0Z" />
             </svg>
-
             <script>
-                //total der unterschriften
                 const total = <%= total %>;
-
-                //In die untere variable kann die anzahl der gesammelten unterschriften eingespiet werden (momentan noch als absolute zahl, benötigt verbindung zu monogDB)
                 var gesamelt = <%= gesamelt %>;
-
-                //Einfach dreisastzt um einen faktor zu generiren (bruch)
-                var faktor1 = 1 / total * gesamelt;
-
-                console.log(faktor1);
-                //Der Oben berechnete Faktor kann mit der gesamtbreite mutipliziert werden um als breite des elementes welches im vodergrunt ist eingesetzt zu werden
+                var faktor1 = gesamelt / total;
                 document.getElementById("bg1").style.width = 3000 * faktor1;
             </script>
-
             <p class="black">Ziel | Objectif
                 </br>
-                3500</p>
+                <%= total %>
+            </p>
         </div>
     </div>
     <div id="bottom">
@@ -68,20 +58,25 @@
                 <rect id="bg2" class="cls-1" width="364" height="200" y="0" />
                 <path d="m39,1v198H1V1h38m1-1H0v200h40V0h0Z" />
             </svg>
-
             <script>
                 const totalmonat = <%= totalmonat %>;
                 var gesameltmonat = <%= gesameltmonat %>;
-                var faktor2 = 1 / totalmonat * gesameltmonat;
+                var faktor2 = gesameltmonat / totalmonat;
                 document.getElementById("bg2").style.height = 200 * faktor2;
-
-                console.log(faktor2)
-
-                var margintop = 200 - gesameltmonat;
+                var margintop = 200 - 200 * faktor2;
                 document.getElementById("bg2").setAttribute('y', margintop);
-
             </script>
 
+            <div id="textmonat">
+                <p>Monatsziel | Objectif du mois
+                    </br>
+                    <%= totalmonat %>
+                </p>
+                <p class="red">Gesamelt | Récoltées
+                    </br>
+                    <%= gesameltmonat %>
+                </p>
+            </div>
         </div>
         <div id="leaderboard">
             <p>leaderboard
