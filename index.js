@@ -24,9 +24,9 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) =>{
   res.render(`${__dirname}/public/stats`, {
     total: 3000,
-    gesamelt: 300,
-    totalmonat: 300,
-    gesameltmonat: 25,
+    gesamelt: 380,
+    totalmonat: 200,
+    gesameltmonat: 34,
     leaderboard: "Völker hört die Signale",
     altjusos: "Jonas stinkt hih",
   });
