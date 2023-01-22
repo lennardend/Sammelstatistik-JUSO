@@ -50,12 +50,12 @@
             <svg id="graph2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 200">
                 <defs>
                     <style>
-                        .cls-1 {
+                        .cls-2 {
                             fill: #e42320;
                         }
                     </style>
                 </defs>
-                <rect id="bg2" class="cls-1" width="364" height="200" y="0" />
+                <rect id="bg2" class="cls-2" width="364" height="200" y="0" />
                 <path d="m39,1v198H1V1h38m1-1H0v200h40V0h0Z" />
             </svg>
             <script>
@@ -65,6 +65,9 @@
                 document.getElementById("bg2").style.height = 200 * faktor2;
                 var margintop = 200 - 200 * faktor2;
                 document.getElementById("bg2").setAttribute('y', margintop);
+                if (gesameltmonat >= totalmonat) {
+                    document.getElementById("bg2").style.fill = "#00ff00" ;
+                }
             </script>
 
             <div id="textmonat">
