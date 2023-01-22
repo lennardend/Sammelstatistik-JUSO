@@ -82,9 +82,9 @@
             </div>
             <script>
                 var h = window.innerHeight
-                var marginmonat = 0.3 * h * faktor2
+                var marginmonat = 0.3 * h * faktor2 - 10
                 console.log(marginmonat);
-                document.getElementById("gesammeltmonatext").style.marginBottom = marginmonat;
+                document.getElementById("gesammeltmonatext").setAttribute('style', `margin-bottom: ${marginmonat}px`);
             </script>
         </div>
         <div id="leaderboard">

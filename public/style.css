@@ -92,6 +92,7 @@ p {
     height: 40vh;
 }
 
+
 #textmonat{
     height: 40vh;
     margin-left: 1vw;
@@ -100,8 +101,9 @@ p {
     justify-content: space-between;
 }
 
-*#gesammeltmonatext{
-    margin-bottom: 0px;
+
+#gesammeltmonatext{
+    /*margin-bottom: 30px;*/    
 }
 
 
@@ -132,4 +134,8 @@ p {
         height: 40vh;
         width: 100vw;
     }
+
+    p {
+        font-size: 2vw;
+        }
 }
