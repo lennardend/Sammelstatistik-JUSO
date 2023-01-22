@@ -72,11 +72,17 @@
                     </br>
                     <%= totalmonat %>
                 </p>
-                <p class="red">Gesamelt | Récoltées
+                <p id="gesammeltmonatext" class="red">Gesamelt | Récoltées
                     </br>
                     <%= gesameltmonat %>
                 </p>
             </div>
+            <script>
+                var h = window.innerHeight
+                var marginmonat = 0.3 * h * faktor2
+                console.log(marginmonat);
+                document.getElementById("gesammeltmonatext").style.marginBottom = marginmonat;
+            </script>
         </div>
         <div id="leaderboard">
             <p>leaderboard

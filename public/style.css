@@ -75,7 +75,7 @@ h1 {
 }
 
 p {
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     text-align: center;
 }
 
@@ -86,12 +86,10 @@ p {
 
 #graph1 {
     width: 60vw;
-    /*height: 10vh; not working*/
 }
 
 #graph2 {
     height: 40vh;
-    /*height: 10vh; not working*/
 }
 
 #textmonat{
@@ -100,6 +98,10 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+*#gesammeltmonatext{
+    margin-bottom: 0px;
 }
 
 
