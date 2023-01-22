@@ -16,7 +16,7 @@ app.use('/public', express.static(`${__dirname}/public`));
 app.all('/api/:function', (req, res) => {
   var api = require('./api/api.js');
   var method = req.method.toLowerCase();
-  res.send(api.resolve(`${method}_${req.params.function}`));
+  res.send(api.resolve(method, req.params.function));
 });
 
 //route for home page
