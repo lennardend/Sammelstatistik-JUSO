@@ -11,6 +11,16 @@ app.use(bp.urlencoded({ extended: true }));
 //serving static files
 app.use('/public', express.static(`${__dirname}/public`));
 
+//route for home page
+app.get('/', (req, res) => {
+  res.sendFile(`${__dirname}/sites/stats.html`);
+});
+
+//Admin-Stuff
+app.get('/admin/console', (req, res) => {
+    res.sendFile(`${__dirname}/sites/admin/console.html`);
+});
+
 //routes for accessing data api
 app.all('/api/:function', async (req, res) => {
   var method = req.method.toLowerCase();
@@ -18,10 +28,6 @@ app.all('/api/:function', async (req, res) => {
   res.send(apiData);
 });
 
-//route for home page
-app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/public/stats.html`);
-});
 
 //start server
 const port = parseInt(process.env.PORT);
