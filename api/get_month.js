@@ -6,11 +6,11 @@ async function getData() {
     data = {}
     data.total = target.amount;
 
-    amount = 0;
+    const currentDate = new Date(Date.now());
+    var amount = 0;
     for (var i = 0; i < signatures.length; i++) {
         var signature = signatures[i];
         var date = new Date(signature.date);
-        const currentDate = new Date(Date.now());
 
         if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth()) {
             amount += signature.amount;
