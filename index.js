@@ -14,20 +14,8 @@ app.all('/api/:function', async (req, res) => {
 });
 
 //route for home page
-app.set('view engine', 'ejs');
-app.get('/', async (req, res) => {
-  const total = await api.resolve('get', 'total');
-  const month = await api.resolve('get', 'month');
-  const top3 = await api.resolve('get', 'top3');
-  const top3Month = await api.resolve('get', 'top3month');
-  res.render(`${__dirname}/public/stats`, {
-    'total': total.total,
-    'gesammelt': total.gesammelt,
-    'totalmonat': month.total,
-    'gesammeltmonat': month.gesammelt,
-    'leaderboard': top3,
-    'top3Month': top3Month,
-  });
+app.get('/', (req, res) => {
+  res.sendFile(`${__dirname}/public/stats.html`);
 });
 
 //start server
