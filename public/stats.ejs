@@ -74,7 +74,7 @@
             </script>
         </div>
         <div id="leaderboard">
-            <p>leaderboard</p>
+            <p>Leaderboard total</p>
             <ol>
                 <% for (var i=0; i < leaderboard.length; i++) { %>
                     <li><%= leaderboard[i].name + " - " + leaderboard[i].amount %></li>
@@ -82,10 +82,12 @@
             </ol>
         </div>
         <div id="altjusos">
-            <p>Alt JUSOs | vieux JUSOs
-                </br>
-                <%= altjusos %>
-            </p>
+            <p>Leaderboard Monat | leaderboard mois</p>
+            <ol>
+                <% for (var i=0; i < top3Month.length; i++) { %>
+                    <li><%= top3Month[i].name + " - " + top3Month[i].amount %></li>
+                <% } %>
+            </ol>
         </div>
     </div>
 </body>

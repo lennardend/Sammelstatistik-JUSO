@@ -19,14 +19,14 @@ app.get('/', async (req, res) => {
   const total = await api.resolve('get', 'total');
   const month = await api.resolve('get', 'month');
   const top3 = await api.resolve('get', 'top3');
-  const altjusos = await api.resolve('get', 'altjuso');
+  const top3Month = await api.resolve('get', 'top3month');
   res.render(`${__dirname}/public/stats`, {
     'total': total.total,
     'gesammelt': total.gesammelt,
     'totalmonat': month.total,
     'gesammeltmonat': month.gesammelt,
     'leaderboard': top3,
-    'altjusos': altjusos,
+    'top3Month': top3Month,
   });
 });
 
