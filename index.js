@@ -18,18 +18,20 @@ app.set('view engine', 'ejs');
 app.get('/', async (req, res) => {
   const total = await api.resolve('get', 'total');
   const month = await api.resolve('get', 'month');
+  const top3 = await api.resolve('get', 'top3');
+  const altjusos = await api.resolve('get', 'altjuso');
   res.render(`${__dirname}/public/stats`, {
     'total': total.total,
     'gesammelt': total.gesammelt,
     'totalmonat': month.total,
     'gesammeltmonat': month.gesammelt,
-    'leaderboard': "Völker hört die Signale",
-    'altjusos': "Jonas stinkt hih",
+    'leaderboard': top3,
+    'altjusos': altjusos,
   });
 });
 
 //start server
 const port = parseInt(process.env.PORT);
 app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+  console.info(`listening on port ${port}`);
 });

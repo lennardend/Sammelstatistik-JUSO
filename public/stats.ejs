@@ -13,7 +13,8 @@
 <body>
     <div id="top">
         <div id="title">
-            <h1><a href="https://zukunft-initiative.ch/">Zukunft Initative</a> | <a href="https://initiative-pour-lavenir.ch/">Initative pour l'avenir</a></h1>
+            <h1><a href="https://zukunft-initiative.ch/">Zukunft Initative</a> | <a
+                    href="https://initiative-pour-lavenir.ch/">Initative pour l'avenir</a></h1>
         </div>
         <div id="total">
             <p class="red">Gesammelt | Récoltées
@@ -51,7 +52,7 @@
                 var margintop = 200 - 200 * faktor2;
                 document.getElementById("bg2").setAttribute('y', margintop);
                 if (gesammeltmonat >= totalmonat) {
-                    document.getElementById("bg2").style.fill = "#00ff00" ;
+                    document.getElementById("bg2").style.fill = "#00ff00";
                 }
             </script>
 
@@ -68,15 +69,17 @@
             <script>
                 var h = window.innerHeight
                 var marginmonat = 0.3 * h * faktor2 - 10
-                
+
                 document.getElementById("gesammeltmonatext").setAttribute('style', `margin-bottom: ${marginmonat}px`);
             </script>
         </div>
         <div id="leaderboard">
-            <p>leaderboard
-                </br>
-                <%= leaderboard %>
-            </p>
+            <p>leaderboard</p>
+            <ol>
+                <% for (var i=0; i < leaderboard.length; i++) { %>
+                    <li><%= leaderboard[i].name + " - " + leaderboard[i].amount %></li>
+                <% } %>
+            </ol>
         </div>
         <div id="altjusos">
             <p>Alt JUSOs | vieux JUSOs
