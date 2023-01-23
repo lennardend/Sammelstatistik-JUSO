@@ -39,6 +39,17 @@
         </div>
     </div>
     <div id="bottom">
+        <div id="leaderboard">
+            <p>Leaderboard total</p>
+            <ol>
+                <% for (var i=0; i < leaderboard.length; i++) { %>
+                    <li>
+                        <%= leaderboard[i].name + " - " + leaderboard[i].amount %>
+                    </li>
+                    <% } %>
+            </ol>
+        </div>
+
         <div id="monat">
             <svg id="graph2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 200">
                 <rect id="bg2" class="cls-2" width="364" height="200" y="0" />
@@ -55,7 +66,6 @@
                     document.getElementById("bg2").style.fill = "#00ff00";
                 }
             </script>
-
             <div id="textmonat">
                 <p>Monatsziel | Objectif du mois
                     </br>
@@ -73,20 +83,15 @@
                 document.getElementById("gesammeltmonatext").setAttribute('style', `margin-bottom: ${marginmonat}px`);
             </script>
         </div>
-        <div id="leaderboard">
-            <p>Leaderboard total</p>
-            <ol>
-                <% for (var i=0; i < leaderboard.length; i++) { %>
-                    <li><%= leaderboard[i].name + " - " + leaderboard[i].amount %></li>
-                <% } %>
-            </ol>
-        </div>
+
         <div id="altjusos">
             <p>Leaderboard Monat | leaderboard mois</p>
             <ol>
                 <% for (var i=0; i < top3Month.length; i++) { %>
-                    <li><%= top3Month[i].name + " - " + top3Month[i].amount %></li>
-                <% } %>
+                    <li>
+                        <%= top3Month[i].name + " - " + top3Month[i].amount %>
+                    </li>
+                    <% } %>
             </ol>
         </div>
     </div>
