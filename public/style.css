@@ -9,6 +9,11 @@ a {
     cursor: pointer;
 }
 
+a :hover {
+    color: white;
+    -webkit-text-stroke-color: #e42320;
+}
+
 .cls-1 {
     fill: #e42320;
 }
@@ -117,9 +122,8 @@ p {
     justify-content: space-between;
 }
 
-
-#gesammeltmonatext{
-    /*margin-bottom: 30px;*/    
+li {
+    text-align: center;
 }
 
 
