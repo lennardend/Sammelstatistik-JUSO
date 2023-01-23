@@ -1,4 +1,7 @@
-const db = require('./db.js')
+const db = require('../database/db.js');
 
-// TODO: JSON mit top 3 alt-jusos
+async function getData() {
+    return "Auf zum letzten gefecht";
+}
 
+module.exports = { getData };
