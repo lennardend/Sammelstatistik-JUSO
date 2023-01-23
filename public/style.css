@@ -61,6 +61,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 1.5vw;
 }
 
 #monat {
@@ -78,6 +79,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 1.5vw;
 }
 
 h1 {
