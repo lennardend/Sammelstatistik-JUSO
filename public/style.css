@@ -4,6 +4,11 @@
     font-family: "Comic Sans MS", "Comic Sans", sans-serif;
 }
 
+a {
+    all: unset;
+    cursor: pointer;
+}
+
 .cls-1 {
     fill: #e42320;
 }
