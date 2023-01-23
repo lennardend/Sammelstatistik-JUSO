@@ -8,7 +8,8 @@ fetch("/api/total")
         document.getElementById("varTotal").append(total);
         document.getElementById("varGesammelt").append(gesammelt);
         
-        document.getElementById("bg1").style.width = 3000 * (gesammelt / total);
+        var barWidth = 3000 * (gesammelt / total);
+        document.getElementById("bg1").style.width = `${barWidth}px`;
     });
 
 //Daten für Monat herunterladen und einfügen
@@ -23,15 +24,15 @@ fetch("/api/month")
         document.getElementById("varTotalMonat").append(totalMonat);
         document.getElementById("gesammeltMonatText").append(gesammeltMonat);
 
-        document.getElementById("bg2").style.height = 200 * faktor;
+        document.getElementById("bg2").style.height = `${200 * faktor}px`;
         document.getElementById("bg2").setAttribute('y', 200 - 200 * faktor);
         if (gesammeltMonat >= totalMonat) {
             document.getElementById("bg2").style.fill = "#00ff00";
         }
         
         var h = window.innerHeight
-        var marginmonat = 0.3 * h * faktor - 10;
-        document.getElementById("gesammeltMonatText").setAttribute('style', `margin-bottom: ${marginmonat}px`);
+        var marginMonat = 0.3 * h * faktor - 10;
+        document.getElementById("gesammeltMonatText").setAttribute('style', `margin-bottom: ${marginMonat}px`);
     });
 
 fetch("/api/top3")
@@ -51,5 +52,3 @@ fetch("/api/top3month")
             document.getElementById("leaderboardMonthList").innerHTML += listItem;
         }
     });
-
-console.log("Startet Data Downloads")
