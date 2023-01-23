@@ -1,10 +1,10 @@
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
-const client = new MongoClient(process.env.DB_CONN);
 
-async function findInZiele(name) {
+async function findInSettings(name) {
+    const client = new MongoClient(process.env.DB_CONN);
     const database = client.db('sammelstatistik');
-    const ziele = database.collection('ziele');
+    const settings = database.collection('settings');
 
     try {
         const query = { "name": name };
@@ -12,40 +12,36 @@ async function findInZiele(name) {
             projection: { _id: 0, name: 1, amount: 1 }
         };
         
-        return await ziele.findOne(query, options);    
+        return await settings.findOne(query, options);    
     }
     catch(err) {
         console.log(err.message)
     }
+    finally {
+        await client.close();
+    }
 }
 
-async function getSignatureAmount() {
+async function getSignatures() {
+    const client = new MongoClient(process.env.DB_CONN);
     const database = client.db('sammelstatistik');
-    const unterschriften = database.collection('unterschriften');
+    const signatures = database.collection('signatures');
 
     try {
-        const query = { amount: { $gt: 0 } };
+        const query = {};
         const options = {
-            projection: { _id: 0, amount: 1 }
+            projection: { _id: 0, name: 1, date: 1, amount: 1 }
         };
 
-        const cursor = await unterschriften.find(query, options);
-        const signatures = await cursor.toArray();
-
-        var amount = 0;
-        for (var i = 0; i < signatures.length; i++) {
-            amount += signatures[i].amount;
-        }
-
-        return amount;
+        const cursor = await signatures.find(query, options);
+        return await cursor.toArray();
     }
     catch(err) {
         console.log(err.message)
     }
+    finally {
+        await client.close();
+    }
 }
 
-async function close() {
-    await client.close();
-}
-
-module.exports = { findInZiele, getSignatureAmount, close }; 
+module.exports = { findInSettings, getSignatures }; 

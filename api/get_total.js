@@ -1,20 +1,20 @@
-const db = require('../database/db.js');
+async function getData() {
+    const db = require('../database/db.js');
+    var data = {};
 
-var data = {
-    "total": 0,
-    "gesammelt": 0
+    const total = await db.findInSettings('total');
+    data.total = total.amount;
+
+    const signatures = await db.getSignatures();
+
+    var amount = 0;
+    for (var i = 0; i < signatures.length; i++) {
+        amount += signatures[i].amount;
+    }
+    data.gesammelt = amount;   
+
+    return data;
 }
 
-db.findInZiele('total')
-    .then(result => {
-        data.total = result.amount;
-        
-        db.getSignatureAmount().then(result => {
-            data.gesammelt = result;
+module.exports = { getData };
 
-            module.exports = { data };
-        })
-        .then(() => {
-            db.close();
-        })
-    })
