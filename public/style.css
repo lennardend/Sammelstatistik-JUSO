@@ -128,7 +128,7 @@ li {
 }
 
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 800px) {
 
     #top {
         height: fit-content;
@@ -140,27 +140,40 @@ li {
 
     }
 
+    #total{
+        flex-direction: column;
+        height: 20vh;
+    }
+
+    #graph1{
+        width: 80vw;
+    }
+
+    #leaderboard {
+        height: 30vh;
+        width: 100vw;
+    }
+
     #monat {
         height: 40vh;
         width: 100vw;
 
     }
 
-    #leaderboard {
-        height: 40vh;
+    #altjusos {
+        height: 30vh;
         width: 100vw;
     }
 
-    #altjusos {
-        height: 40vh;
-        width: 100vw;
+    h1{
+        font-size: 8vw; 
     }
 
     p {
-        font-size: 2vw;
+        font-size: 4vw;
     }
 
     li {
-        font-size: 2vw;
+        font-size: 4vw;
     }
 }
