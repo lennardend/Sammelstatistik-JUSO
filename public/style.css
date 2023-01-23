@@ -54,6 +54,15 @@ a {
 
 }
 
+#leaderboard {
+    height: 50vh;
+    width: 33vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #monat {
     height: 50vh;
     width: 33vw;
@@ -62,19 +71,11 @@ a {
     align-items: center;
 }
    
-
-#leaderboard {
-    height: 50vh;
-    width: 33vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 #altjusos {
     height: 50vh;
     width: 33vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
