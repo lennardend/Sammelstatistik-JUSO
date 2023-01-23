@@ -1,6 +1,6 @@
 const db = require('../database/db.js');
 
-async function getData() {
+async function getData(request) {
     signatures = await db.getSignatures();
 
     var signaturesPerson = {};

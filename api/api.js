@@ -1,5 +1,5 @@
-async function resolve(method, func) {
-    return await require(`./${method}_${func}.js`).getData();
+async function resolve(method, func, request) {
+    return await require(`./${method}_${func}.js`).getData(request);
 }
 
 module.exports = { resolve }
