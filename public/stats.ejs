@@ -22,7 +22,7 @@
                 <%= gesammelt %>
             </p>
             <svg id="graph1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 300">
-                <rect id="bg1" class="cls-1" width="3000" height="300" />
+                <rect id="bg1" class="cls-1" width="3000" height="300" style="width: 0px"/>
                 <path d="m2993,7v286H7V7h2986m7-7H0v300h3000V0h0Z" />
             </svg>
             <script>
@@ -30,7 +30,7 @@
                 const gesammelt = <%= gesammelt %>;
 
                 var faktor1 = gesammelt / total;
-                document.getElementById("bg1").setAttribute.width = 3000 * faktor1;
+                document.getElementById("bg1").style.width = 3000 * faktor1;
             </script>
             <p class="black">Ziel | Objectif
                 </br>
@@ -52,7 +52,7 @@
 
         <div id="monat">
             <svg id="graph2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 200">
-                <rect id="bg2" class="cls-2" width="364" height="200" y="0" />
+                <rect id="bg2" class="cls-2" width="364" height="200" y="0" style="height: 0"/>
                 <path d="m39,1v198H1V1h38m1-1H0v200h40V0h0Z" />
             </svg>
             <script>
