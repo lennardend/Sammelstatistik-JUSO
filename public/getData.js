@@ -30,7 +30,7 @@ fetch("/api/month")
         }
         
         var h = window.innerHeight
-        var marginmonat = 0.3 * h * faktor - 10
+        var marginmonat = 0.3 * h * faktor - 10;
         document.getElementById("gesammeltMonatText").setAttribute('style', `margin-bottom: ${marginmonat}px`);
     });
 
