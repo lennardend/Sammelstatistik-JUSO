@@ -4,6 +4,14 @@
     font-family: "Comic Sans MS", "Comic Sans", sans-serif;
 }
 
+.cls-1 {
+    fill: #e42320;
+}
+
+.cls-2 {
+    fill: #e42320;
+}
+
 #body {
     display: flex;
 }
