@@ -1,7 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const bp = require('body-parser');
 const api = require('./api/api.js');
+
+//body-parser shit, idk what is going on
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 
 //serving static files
 app.use('/public', express.static(`${__dirname}/public`));
@@ -9,7 +14,7 @@ app.use('/public', express.static(`${__dirname}/public`));
 //routes for accessing data api
 app.all('/api/:function', async (req, res) => {
   var method = req.method.toLowerCase();
-  var apiData = await api.resolve(method, req.params.function, req);
+  var apiData = await api.resolve(method, req.params.function, req.body);
   res.send(apiData);
 });
 

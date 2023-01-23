@@ -44,4 +44,21 @@ async function getSignatures() {
     }
 }
 
-module.exports = { findInSettings, getSignatures }; 
+async function addSignature(data) {
+    const client = new MongoClient(process.env.DB_CONN);
+    const database = client.db('sammelstatistik');
+    const signatures = database.collection('signatures');
+
+    try {
+        await signatures.insertOne(data);
+    }
+    catch(err) {
+        console.log(err.message);
+    }
+    finally {
+        await client.close();
+    }
+
+}
+
+module.exports = { findInSettings, getSignatures, addSignature }; 
