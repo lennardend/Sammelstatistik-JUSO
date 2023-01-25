@@ -1,6 +1,6 @@
 const db = require('../database/db.js');
 
-async function getData(request) {
+async function getData() {
     var data = {};
 
     const total = await db.findInSettings('total');

@@ -1,6 +1,6 @@
 const db = require('../database/db.js');
 
-async function getData(request) {
+async function getData() {
     const target = await db.findInSettings('monat');
     const signatures = await db.getSignatures();
 
