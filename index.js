@@ -6,8 +6,6 @@ require('dotenv').config();
 const session = require('express-session');
 const bp = require('body-parser');
 const bcrypt = require('bcrypt');
-//import custom modules
-const api = require('./api/api.js');
 
 //body-parser middleware, idk what is going on (needed to get body of request)
 app.use(bp.json());
@@ -35,8 +33,12 @@ app.get('/', (req, res) => {
 //routes for accessing data api
 app.all('/api/:function', async (req, res) => {
   var method = req.method.toLowerCase();
-  var apiData = await api.resolve(method, req.params.function, req.body);
-  res.send(apiData);
+  var func = req.params.function;
+
+  var apiResponse = await require(`./api/${method}_${func}.js`).getData(req, res);
+  if (apiResponse != undefined) {
+    res.send(apiResponse);
+  }
 });
 
 //Admin-Stuff
