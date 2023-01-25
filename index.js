@@ -32,12 +32,18 @@ app.get('/', (req, res) => {
 
 //routes for accessing data api
 app.all('/api/:function', async (req, res) => {
-  var method = req.method.toLowerCase();
-  var func = req.params.function;
+  try {
+    var method = req.method.toLowerCase();
+    var func = req.params.function;
 
-  var apiResponse = await require(`./api/${method}_${func}.js`).getData(req, res);
-  if (apiResponse != undefined) {
-    res.send(apiResponse);
+    var apiResponse = await require(`./api/${method}_${func}.js`).getData(req, res);
+    if (apiResponse != undefined) {
+      res.send(apiResponse);
+    }
+  }
+  catch (err) {
+    res.statusCode = 404;
+    res.send(`Cannot GET ${req.path}`);
   }
 });
 
