@@ -9,7 +9,7 @@ async function findInSettings(name) {
     try {
         const query = { "name": name };
         const options = {
-            projection: { _id: 0, name: 1, amount: 1 }
+            projection: { _id: 0, name: 1, amount: 1, hash: 1 }
         };
         
         return await settings.findOne(query, options);    
