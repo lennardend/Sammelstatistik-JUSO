@@ -8,6 +8,7 @@ async function getData(request, response) {
 
     data.name = data.name.trim();
     data.amount = parseInt(data.amount.trim());
+    console.log(data.date);
 
     try {
         if (typeof data.name !== 'string' || data.name.length > 20 || data.name === '' || /\d/.test(data.name)) {
@@ -21,7 +22,7 @@ async function getData(request, response) {
             const insertData = {
                 name: data.name,
                 amount: data.amount,
-                date: new Date(Date.now())
+                date: ""
             } 
             db.addSignature(insertData);
         }

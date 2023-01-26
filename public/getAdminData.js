@@ -49,6 +49,8 @@ fetch("/api/names")
             dropdown.innerHTML += option;
         }
         dropdown.innerHTML += '<option value="new">neue*r Sammler*in</option>';
+
+        document.getElementById("date-input").setAttribute("value", new Date(Date.now()).toLocaleDateString('de'));
     });
 
 //Daten für Tabelle herunterladen

@@ -11,7 +11,7 @@ async function getData() {
     const signatures = await db.getSignatures({ _id: 0, name: 1, amount: 1, date: 1 });
 
     data = {}
-    data.total = target.amount;
+    data.total = target.value;
 
     const currentDate = new Date(Date.now());
     var amount = 0;
