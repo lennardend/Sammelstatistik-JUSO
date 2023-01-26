@@ -8,7 +8,7 @@ fetch("/api/total")
         document.getElementById("varTotal").append(total);
         document.getElementById("varGesammelt").append(gesammelt);
         
-        var barWidth = 3000 * (gesammelt / total);
+        const barWidth = 3000 * (gesammelt / total);
         document.getElementById("bg1").style.width = `${barWidth}px`;
     });
 
@@ -38,17 +38,17 @@ fetch("/api/month")
 fetch("/api/top3")
     .then((response) => response.json())
     .then((data) => {
-        for (var i=0; i < data.length; i++) {
-            var listItem = `<li>${data[i].name} - ${data[i].amount}</li>`;
+        data.forEach(person => {
+            const listItem = `<li>${person.name} - ${person.amount}</li>`;
             document.getElementById("leaderboardList").innerHTML += listItem;
-        }
+        });
     });
 
 fetch("/api/top3month")
     .then((response) => response.json())
     .then((data) => {
-        for (var i=0; i < data.length; i++) {
-            var listItem = `<li>${data[i].name} - ${data[i].amount}</li>`;
+        data.forEach(person => {
+            const listItem = `<li>${person.name} - ${person.amount}</li>`;
             document.getElementById("leaderboardMonthList").innerHTML += listItem;
-        }
+        });
     });

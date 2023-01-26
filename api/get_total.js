@@ -1,12 +1,12 @@
 const db = require('../database/db.js');
 
-async function getData(request) {
+async function getData() {
     var data = {};
 
     const total = await db.findInSettings('total');
-    data.total = total.amount;
+    data.total = total.value;
 
-    const signatures = await db.getSignatures();
+    const signatures = await db.getSignatures({ _id: 0, amount: 1 });
 
     var amount = 0;
     for (var i = 0; i < signatures.length; i++) {
