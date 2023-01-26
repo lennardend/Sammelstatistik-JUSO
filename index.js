@@ -107,8 +107,6 @@ app.get('/admin/login', initializeForAPI,
 app.post('/admin/login', isInitialized, async (req, res) => {
   const password = req.body.password.trim();
   const user = await require('./database/db.js').findInSettings('admin');
-  console.log(password);
-  bcrypt.hash(password, 10, (err, hash) => {console.log(hash)});
 
   await bcrypt.compare(password, user.value, async (err, result) => {
     if (result == true) {

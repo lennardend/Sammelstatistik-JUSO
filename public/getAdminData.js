@@ -50,7 +50,9 @@ fetch("/api/names")
         }
         dropdown.innerHTML += '<option value="new">neue*r Sammler*in</option>';
 
-        document.getElementById("date-input").setAttribute("value", new Date(Date.now()).toLocaleDateString('de'));
+        //set date in selector to today
+        const date = new Date(Date.now()).toISOString().split("T")[0];
+        document.getElementById("date-input").setAttribute("value", date);
     });
 
 //Daten für Tabelle herunterladen
@@ -71,7 +73,7 @@ function loadSignatureTable() {
                 const amount = signature.amount;
                 const id = signature._id;
                 var date = '';
-                if (signature.date != undefined) date = new Date().toLocaleDateString('de-DE');
+                if (signature.date != undefined) date = new Date(signature.date).toLocaleDateString('de-CH');
 
                 const tableRow = `
                 <tr id="${id}">
