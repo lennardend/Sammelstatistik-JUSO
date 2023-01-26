@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 async function findInSettings(name) {
     const client = new MongoClient(process.env.DB_CONN);
@@ -58,7 +58,22 @@ async function addSignature(data) {
     finally {
         await client.close();
     }
-
 }
 
-module.exports = { findInSettings, getSignatures, addSignature }; 
+async function deleteSignature(id) {
+    const client = new MongoClient(process.env.DB_CONN);
+    const database = client.db('sammelstatistik');
+    const signatures = database.collection('signatures');
+
+    try {
+        console.log(id);
+        await signatures.deleteOne({ '_id': ObjectId(id) });
+    } catch (err) {
+        console.log(err.message);        
+    }
+    finally {
+        client.close();
+    }
+}
+
+module.exports = { findInSettings, getSignatures, addSignature, deleteSignature }; 
