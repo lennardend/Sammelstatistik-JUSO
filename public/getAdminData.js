@@ -1,4 +1,28 @@
-//Daten für Droptdown herunterladen und einfügen
+async function deleteSignature(id) {
+    const tableRow = document.getElementById(id);
+    const name = tableRow.getElementsByClassName("table-name")[0].innerHTML;
+    const amount = tableRow.getElementsByClassName("table-amount")[0].innerHTML;
+    var date = tableRow.getElementsByClassName("table-date")[0].innerHTML;
+
+    if (date != '') {
+        date = ` vom ${date}`;
+    }
+
+    const message = `Möchtest du den Eintrag von ${name}${date} mit einer Anzahl von ${amount} Unterschriften löschen?`;
+    if(!confirm(message)){
+        return;
+    }
+
+    await fetch("/api/delete", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 'id': id })
+    });
+
+    loadSignatureTable();
+}
+
+//Daten für Dropdown herunterladen und einfügen
 fetch("/api/names")
     .then((response) => response.json())
     .then((data) => {
@@ -9,13 +33,13 @@ fetch("/api/names")
         inputNewName.setAttribute("name", "new-name");
         inputNewName.setAttribute("id", "newName-input");
         inputNewName.setAttribute("placeholder", "neuer Name");
-        
+
         dropdown.addEventListener("change", () => {
             if (dropdown.value == "new") {
                 dropdown.after(inputNewName);
             }
             else {
-                document.getElementById("newName-input").remove()
+                if (document.body.contains(inputNewName)) inputNewName.remove();
             }
         });
 
@@ -26,3 +50,39 @@ fetch("/api/names")
         }
         dropdown.innerHTML += '<option value="new">neue*r Sammler*in</option>';
     });
+
+//Daten für Tabelle herunterladen
+function loadSignatureTable() {
+    fetch("/api/signatures")
+        .then((response) => response.json())
+        .then((data) => {
+            const table = document.getElementById("signature-table");
+            table.innerHTML = `            
+            <tr>
+                <th>Datum</th>
+                <th>Name</th>
+                <th>Anzahl</th>
+                <th>Löschen</th>
+            </tr>`;
+
+            data.forEach(signature => {
+                const name = signature.name;
+                const amount = signature.amount;
+                const id = signature._id;
+                var date = '';
+                if (signature.date != undefined) date = new Date().toLocaleDateString('de-DE');
+
+                const tableRow = `
+                <tr id="${id}">
+                    <td class="table-date">${date}</td>
+                    <td class="table-name">${name}</td>
+                    <td class="table-amount">${amount}</td>
+                    <td class="table-delete"><button onclick="deleteSignature('${id}')">🗑️</button></td>
+                </tr>`;
+
+                table.innerHTML += tableRow;
+            });
+        });
+}
+
+loadSignatureTable();

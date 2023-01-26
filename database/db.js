@@ -66,7 +66,6 @@ async function deleteSignature(id) {
     const signatures = database.collection('signatures');
 
     try {
-        console.log(id);
         await signatures.deleteOne({ '_id': ObjectId(id) });
     } catch (err) {
         console.log(err.message);        
