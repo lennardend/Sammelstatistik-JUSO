@@ -6,7 +6,7 @@ require('dotenv').config();
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 
-//body-parser middleware, idk what is going on (needed to get body of request)
+//needed to get body of request
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -17,7 +17,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 6
+    maxAge: 1000 * 60 * 60 * 6 //cookie verfällt nach 6 Stunden
   }
 }));
 
@@ -42,7 +42,7 @@ app.all('/api/:function', async (req, res) => {
   }
   catch (err) {
     res.statusCode = 404;
-    res.send(`Cannot GET ${req.path}`);
+    res.send(`<pre>Cannot GET ${req.path}</pre>`);
   }
 });
 
@@ -64,12 +64,13 @@ app.post('/admin/login', async (req, res) => {
   const password = req.body.password.trim();
   const user = await require('./database/db.js').findInSettings('admin');
 
-  bcrypt.compare(password, user.hash, (err, result) => {
+  bcrypt.compare(password, user.hash, async (err, result) => {
     if (result == true) {
       req.session.user = 'admin';
       res.redirect('/admin/console');
     }
     else {
+      await new Promise(res => setTimeout(res, 5000));
       res.redirect('/admin/login');
     }
   });
