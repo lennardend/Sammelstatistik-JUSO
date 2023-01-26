@@ -22,6 +22,14 @@ app.use(session({
   }
 }));
 
+//ERRORS
+function error401(res) {
+  res.status(401).send('<pre>Ur so not allowed to do that</pre>');
+}
+function error404(req, res) {
+  res.status(404).send(`<pre>Cannot ${req.method} ${req.path}</pre>`);
+}
+
 //MIDDLEWARE 
 //api can only be accessed if user has visited homepage before
 function initializeForAPI(req, res, next) {
@@ -32,7 +40,7 @@ function initializeForAPI(req, res, next) {
 function isInitialized(req, res, next) {
   if (req.session.initialized) next();
   else {
-    res.status(401).send('Ur so not allowed to do that');
+    error401(res);
   }
 }
 //checking before access if user is authenticated as admin
@@ -54,14 +62,16 @@ function getAPIPath(req, res, next) {
   }
   else if (fs.existsSync(adminPath)) {
     res.locals.apiPath = adminPath;
-    isAuthenticatedAsAdmin(req, res, next);
+    (req, res, next) => {
+      if (req.session.user == 'admin') next();
+      else error401(res);
+    };
   }
   else {
     console.warn(`Couldnt find '${path}' or '${adminPath}'`);
-    res.status(404).send(`<pre>Cannot ${req.method} ${req.path}</pre>`);
+    error404(req, res);
   }
 }
-
 
 //serving static files
 app.use('/public', express.static(`${__dirname}/public`));
