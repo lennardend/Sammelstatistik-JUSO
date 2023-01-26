@@ -41,6 +41,7 @@ app.all('/api/:function', async (req, res) => {
     }
   }
   catch (err) {
+    console.warn(err.message);
     res.statusCode = 404;
     res.send(`<pre>Cannot GET ${req.path}</pre>`);
   }
