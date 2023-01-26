@@ -4,12 +4,11 @@ const app = express();
 // import packages
 require('dotenv').config();
 const session = require('express-session');
-const bp = require('body-parser');
 const bcrypt = require('bcrypt');
 
 //body-parser middleware, idk what is going on (needed to get body of request)
-app.use(bp.json());
-app.use(bp.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //session middleware
 app.set('trust proxy', 1);

@@ -15,7 +15,7 @@ async function getData(request, response) {
     data.parsedAmount = parseInt(data.amount.trim());
 
     try {
-        if (typeof data.name !== 'string' || data.name === '---' || data.name === 'neuer Name'|| data.name === 'None') {
+        if (typeof data.name !== 'string' || data.name === 'neuer Name'|| data.name === 'None') {
             throw new Error(`Issue with name: ${data.name}. Is not 'string' or is still default value`);
         }
         if (typeof data.parsedAmount !== 'number' || isNaN(data.parsedAmount)) {
