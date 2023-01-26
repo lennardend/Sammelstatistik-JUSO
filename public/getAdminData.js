@@ -8,7 +8,7 @@ fetch("/api/names")
         inputNewName.setAttribute("type", "text");
         inputNewName.setAttribute("name", "new-name");
         inputNewName.setAttribute("id", "newName-input");
-        inputNewName.setAttribute("value", "neuer Name");      
+        inputNewName.setAttribute("placeholder", "neuer Name");
         
         dropdown.addEventListener("change", () => {
             if (dropdown.value == "new") {
@@ -19,7 +19,7 @@ fetch("/api/names")
             }
         });
 
-        dropdown.innerHTML += '<option value="None">---</option>';
+        dropdown.innerHTML += '<option value="">---</option>';
         for (var i = 0; i < data.length; i++) {
             var option = `<option value="${data[i]}">${data[i]}</option>`;
             dropdown.innerHTML += option;
