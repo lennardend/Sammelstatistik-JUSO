@@ -8,7 +8,7 @@ async function deleteSignature(id) {
         date = ` vom ${date}`;
     }
 
-    const message = `Möchtest du den Eintrag von ${name}${date} mit einer Anzahl von ${amount} Unterschriften löschen?`;
+    const message = `Möchtest du den Eintrag von ${name}${date} mit ${amount} Unterschriften löschen?`;
     if(!confirm(message)){
         return;
     }
