@@ -21,7 +21,7 @@ fetch("/api/names")
 
         dropdown.innerHTML += '<option value="">---</option>';
         for (var i = 0; i < data.length; i++) {
-            var option = `<option value="${data[i]}">${data[i]}</option>`;
+            const option = `<option value="${data[i]}">${data[i]}</option>`;
             dropdown.innerHTML += option;
         }
         dropdown.innerHTML += '<option value="new">neue*r Sammler*in</option>';

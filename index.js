@@ -32,10 +32,10 @@ app.get('/', (req, res) => {
 //routes for accessing data api
 app.all('/api/:function', async (req, res) => {
   try {
-    var method = req.method.toLowerCase();
-    var func = req.params.function;
+    const method = req.method.toLowerCase();
+    const func = req.params.function;
 
-    var apiResponse = await require(`./api/${method}_${func}.js`).getData(req, res);
+    const apiResponse = await require(`./api/${method}_${func}.js`).getData(req, res);
     if (apiResponse != undefined) {
       res.send(apiResponse);
     }
