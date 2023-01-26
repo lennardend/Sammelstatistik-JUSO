@@ -62,7 +62,6 @@ function loadSignatureTable() {
                 <th>Datum</th>
                 <th>Name</th>
                 <th>Anzahl</th>
-                <th>Löschen</th>
             </tr>`;
 
             data.forEach(signature => {
