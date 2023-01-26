@@ -16,10 +16,10 @@ async function getData(request, response) {
 
     try {
         if (typeof data.name !== 'string' || data.name === '---' || data.name === 'neuer Name'|| data.name === 'None') {
-            throw new Error(`Issue with name: ${data.name}. Is not String or is still default value`);
+            throw new Error(`Issue with name: ${data.name}. Is not 'string' or is still default value`);
         }
         if (typeof data.parsedAmount !== 'number' || isNaN(data.parsedAmount)) {
-            throw new Error(`Issue with amount: ${data.amount}. Is not Integer or is still default value`);
+            throw new Error(`Issue with amount: ${data.amount}. Is not 'number' or is still default value`);
         }
         else {
             //this object gets inserted into the database
