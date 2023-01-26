@@ -38,17 +38,17 @@ fetch("/api/month")
 fetch("/api/top3")
     .then((response) => response.json())
     .then((data) => {
-        for (var i=0; i < data.length; i++) {
-            const listItem = `<li>${data[i].name} - ${data[i].amount}</li>`;
+        data.forEach(person => {
+            const listItem = `<li>${person.name} - ${person.amount}</li>`;
             document.getElementById("leaderboardList").innerHTML += listItem;
-        }
+        });
     });
 
 fetch("/api/top3month")
     .then((response) => response.json())
     .then((data) => {
-        for (var i=0; i < data.length; i++) {
-            const listItem = `<li>${data[i].name} - ${data[i].amount}</li>`;
+        data.forEach(person => {
+            const listItem = `<li>${person.name} - ${person.amount}</li>`;
             document.getElementById("leaderboardMonthList").innerHTML += listItem;
-        }
+        });
     });
