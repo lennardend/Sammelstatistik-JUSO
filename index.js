@@ -62,10 +62,9 @@ function getAPIPath(req, res, next) {
   }
   else if (fs.existsSync(adminPath)) {
     res.locals.apiPath = adminPath;
-    (req, res, next) => {
-      if (req.session.user == 'admin') next();
-      else error401(res);
-    };
+    
+    if (req.session.user == 'admin') next();
+    else error401(res);
   }
   else {
     console.warn(`Couldnt find '${path}' or '${adminPath}'`);
