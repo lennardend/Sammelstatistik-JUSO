@@ -9,7 +9,7 @@ async function findInSettings(name) {
     try {
         const query = { "name": name };
         const options = {
-            projection: { _id: 0, name: 1, amount: 1, hash: 1 }
+            projection: { _id: 0 }
         };
         
         return await settings.findOne(query, options);    
@@ -22,7 +22,7 @@ async function findInSettings(name) {
     }
 }
 
-async function getSignatures() {
+async function getSignatures(values) {
     const client = new MongoClient(process.env.DB_CONN);
     const database = client.db('sammelstatistik');
     const signatures = database.collection('signatures');
@@ -30,7 +30,7 @@ async function getSignatures() {
     try {
         const query = {};
         const options = {
-            projection: { _id: 0, name: 1, date: 1, amount: 1 }
+            projection: values
         };
 
         const cursor = await signatures.find(query, options);

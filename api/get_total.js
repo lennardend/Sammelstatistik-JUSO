@@ -6,7 +6,7 @@ async function getData() {
     const total = await db.findInSettings('total');
     data.total = total.amount;
 
-    const signatures = await db.getSignatures();
+    const signatures = await db.getSignatures({ _id: 0, amount: 1 });
 
     var amount = 0;
     for (var i = 0; i < signatures.length; i++) {

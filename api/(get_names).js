@@ -1,7 +1,7 @@
 const db = require('../database/db.js');
 
 async function getData() {
-    const signatures = await db.getSignatures();
+    const signatures = await db.getSignatures({ _id: 0, name: 1 });
 
     names = [];
     for (var i = 0; i < signatures.length; i++) {

@@ -1,7 +1,7 @@
 const db = require('../database/db.js');
 
 async function getData() {
-    signatures = await db.getSignatures();
+    signatures = await db.getSignatures({ _id: 0, name: 1, amount: 1, date: 1 });
 
     const currentDate = new Date(Date.now());
     var signaturesPerson = {};

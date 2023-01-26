@@ -8,7 +8,7 @@ async function getData() {
         target = await db.findInSettings('monat');
     }
 
-    const signatures = await db.getSignatures();
+    const signatures = await db.getSignatures({ _id: 0, name: 1, amount: 1, date: 1 });
 
     data = {}
     data.total = target.amount;
