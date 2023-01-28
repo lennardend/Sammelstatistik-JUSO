@@ -35,7 +35,7 @@ fetch("/api/month")
         document.getElementById("gesammeltMonatText").setAttribute('style', `margin-bottom: ${marginMonat}px`);
     });
 
-fetch("/api/top3")
+fetch("/api/top")
     .then((response) => response.json())
     .then((data) => {
         data.forEach(person => {
@@ -44,7 +44,7 @@ fetch("/api/top3")
         });
     });
 
-fetch("/api/top3month")
+fetch("/api/topmonth")
     .then((response) => response.json())
     .then((data) => {
         data.forEach(person => {

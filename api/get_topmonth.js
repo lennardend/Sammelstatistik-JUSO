@@ -31,7 +31,7 @@ async function getData() {
     sortedSignatures.sort((a, b) => b.amount - a.amount);
     
     //nur ersten 3 in array zurückgeben
-    return sortedSignatures.slice(0, 3);
+    return sortedSignatures.slice(0, 5);
 }
 
 module.exports = { getData };
