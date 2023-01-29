@@ -99,6 +99,7 @@ fetch("/api/signatures")
                 }
             }],
             sort: true,
+            search: true,
             width: 500,
             resizable: true,
             pagination: { limit: 15 },
