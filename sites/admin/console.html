@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- download library for sexy tables -->
+    <link rel="stylesheet" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css">
+    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <!-- end of library stuff -->
     <script src="/public/js/getAdminData.js"></script>
     <script defer src="/public/js/showErrors.js"></script>
     <link rel="icon" type="image/x-icon" href="/public/icon.svg">
@@ -20,8 +24,7 @@
         <input type="submit" value="Speichern">
     </form>
     <br>
-    <table id="signature-table">
-    </table>
+    <table id="signature-table"></table>
     <br>
     <form action="/admin/logout" method="post">
         <button type="submit">Logout</button>

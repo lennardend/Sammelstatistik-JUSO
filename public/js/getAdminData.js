@@ -1,15 +1,15 @@
-async function deleteSignature(id) {
-    const tableRow = document.getElementById(id);
-    const name = tableRow.getElementsByClassName("table-name")[0].innerHTML;
-    const amount = tableRow.getElementsByClassName("table-amount")[0].innerHTML;
-    var date = tableRow.getElementsByClassName("table-date")[0].innerHTML;
+async function deleteSignature(row) {
+    const id = row.cells[0].data;
+    var date = row.cells[1].data;
+    const name = row.cells[2].data;
+    const amount = row.cells[3].data;
 
     if (date != '') {
         date = ` vom ${date}`;
     }
 
     const message = `Möchtest du den Eintrag von ${name}${date} mit ${amount} Unterschriften löschen?`;
-    if(!confirm(message)){
+    if (!confirm(message)) {
         return;
     }
 
@@ -19,7 +19,7 @@ async function deleteSignature(id) {
         body: JSON.stringify({ 'id': id })
     });
 
-    loadSignatureTable();
+    window.location.reload();
 }
 
 //Daten für Dropdown herunterladen und einfügen
@@ -56,36 +56,53 @@ fetch("/api/names")
     });
 
 //Daten für Tabelle herunterladen
-function loadSignatureTable() {
-    fetch("/api/signatures")
-        .then((response) => response.json())
-        .then((data) => {
-            const table = document.getElementById("signature-table");
-            table.innerHTML = `            
-            <tr>
-                <th>Datum</th>
-                <th>Name</th>
-                <th>Anzahl</th>
-            </tr>`;
+fetch("/api/signatures")
+    .then((response) => response.json())
+    .then((data) => {
+        const table = document.getElementById("signature-table");
+        table.innerHTML = '';
 
-            data.forEach(signature => {
-                const name = signature.name;
-                const amount = signature.amount;
-                const id = signature._id;
-                var date = '';
-                if (signature.date != undefined) date = new Date(signature.date).toLocaleDateString('de-CH');
+        var dataArray = [];
+        data.forEach(signature => {
+            const name = signature.name;
+            const amount = signature.amount;
+            const id = signature._id;
+            var date = '';
+            if (signature.date != undefined) date = new Date(signature.date);
 
-                const tableRow = `
-                <tr id="${id}">
-                    <td class="table-date">${date}</td>
-                    <td class="table-name">${name}</td>
-                    <td class="table-amount">${amount}</td>
-                    <td class="table-delete"><button onclick="deleteSignature('${id}')">🗑️</button></td>
-                </tr>`;
-
-                table.innerHTML += tableRow;
-            });
+            dataArray.push([id, date, name, amount]);
         });
-}
 
-loadSignatureTable();
+        //sort alphabetically
+        dataArray.sort((a, b) => { return a[2].localeCompare(b[2]) });
+        //sort by signature amount
+        dataArray.sort((a, b) => { return b[3] - a[3] });
+        //sort by date
+        dataArray.sort((a, b) => { return b[1] - a[1] });
+        //format date string
+        for (var i=0; i < dataArray.length; i++) {
+            if (dataArray[i][1] != '') dataArray[i][1] = dataArray[i][1].toLocaleDateString('de-CH');
+        }
+
+        new gridjs.Grid({
+            columns: [{
+                name: 'id',
+                hidden: true
+            }, "Datum", "Name", "Anzahl",
+            {
+                name: '🗑️',
+                sort: false,
+                formatter: (cell, row) => {
+                    return gridjs.h("button", {
+                        onclick: () => deleteSignature(row)
+                    }, "🗑️");
+                }
+            }],
+            sort: true,
+            search: true,
+            width: 500,
+            resizable: true,
+            pagination: { limit: 15 },
+            data: dataArray
+        }).render(table);
+    });
