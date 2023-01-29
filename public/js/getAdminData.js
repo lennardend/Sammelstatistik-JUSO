@@ -75,8 +75,11 @@ fetch("/api/signatures")
 
         //sort alphabetically
         dataArray.sort((a, b) => { return a[2].localeCompare(b[2]) });
+        //sort by signature amount
+        dataArray.sort((a, b) => { return b[3] - a[3] });
         //sort by date
         dataArray.sort((a, b) => { return b[1] - a[1] });
+        //format date string
         for (var i=0; i < dataArray.length; i++) {
             if (dataArray[i][1] != '') dataArray[i][1] = dataArray[i][1].toLocaleDateString('de-CH');
         }
