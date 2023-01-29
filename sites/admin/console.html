@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/public/getAdminData.js"></script>
+    <script src="/public/js/getAdminData.js"></script>
+    <script defer src="/public/js/showErrors.js"></script>
     <link rel="icon" type="image/x-icon" href="/public/icon.svg">
     <title>Admin - Console</title>
 </head>
 
 <body>
-    <form action="/api/signature" method="post">
+    <form action="/api/signature" method="post" id="signature-form">
         <label for="name-input">Neue Unterschriftenanzahl hinzufügen:</label><br>
         <select name="name" id="name-input"></select>
         <input type="text" name="amount" id="amount-input" placeholder="z.B. 14">

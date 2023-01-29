@@ -28,7 +28,7 @@ fetch("/api/names")
     .then((data) => {
         const dropdown = document.getElementById("name-input");
 
-        const inputNewName = document.createElement("input")
+        const inputNewName = document.createElement("input");
         inputNewName.setAttribute("type", "text");
         inputNewName.setAttribute("name", "new-name");
         inputNewName.setAttribute("id", "newName-input");

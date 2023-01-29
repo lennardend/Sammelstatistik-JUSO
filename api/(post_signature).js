@@ -1,5 +1,6 @@
 const db = require('../database/db.js')
 
+
 async function getData(request, response) {
     var data = request.body;
     if (data.name == 'new') {
@@ -8,6 +9,7 @@ async function getData(request, response) {
 
     data.name = data.name.trim();
     data.amount = parseInt(data.amount.trim());
+    var errorMessage = '';
 
     try {
         if (typeof data.name !== 'string' || data.name.length > 20 || data.name === '' || /\d/.test(data.name)) {
@@ -28,9 +30,10 @@ async function getData(request, response) {
     }
     catch (err) {
         console.warn(err.message);
+        errorMessage = '?error=' + encodeURIComponent(err.message);
     }
     finally {
-        response.redirect('/admin/console');
+        response.redirect(`/admin/console${errorMessage}`);
     }
 }
 
