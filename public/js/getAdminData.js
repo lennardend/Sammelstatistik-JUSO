@@ -102,7 +102,7 @@ fetch("/api/signatures")
             search: true,
             width: 500,
             resizable: true,
-            pagination: { limit: 15 },
+            pagination: { limit: 10 },
             data: dataArray
         }).render(table);
     });
