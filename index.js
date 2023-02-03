@@ -23,9 +23,11 @@ app.use(session({
 }));
 
 //ERRORS
+//401: Unauthorized
 function error401(res) {
-    res.status(401).send('<pre>Ur so not allowed to do that</pre>');
+    res.status(401).redirect('/');
 }
+//404: Not Found
 function error404(req, res) {
     res.status(404).send(`<pre>Cannot ${req.method} ${req.path}</pre>`);
 }
