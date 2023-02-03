@@ -54,18 +54,21 @@ async function deleteSignature(id) {
     }
 }
 
-async function getGoal(name) {
+async function getGoals(name) {
     const client = new MongoClient(process.env.DB_CONN);
     const database = client.db('sammelstatistik');
     const goals = database.collection('goals');
 
     try {
-        const query = { "name": name };
+        var query = {}
+        if (name != undefined) query.name = name;
         const options = {
             projection: { _id: 0 }
         };
-        
-        return await goals.findOne(query, options);    
+
+        var results = await goals.find(query, options).toArray();
+        if (results.length > 1) return results;
+        else return results[0];    
     } catch (err) {
         console.log(err.message);        
     }
@@ -94,4 +97,4 @@ async function getUser(name) {
     }
 }
 
-module.exports = { getSignatures, addSignature, deleteSignature, getGoal, getUser }; 
+module.exports = { getSignatures, addSignature, deleteSignature, getGoals, getUser }; 
