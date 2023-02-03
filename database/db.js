@@ -1,27 +1,6 @@
 require('dotenv').config();
 const { MongoClient, ObjectId } = require('mongodb');
 
-async function findInSettings(name) {
-    const client = new MongoClient(process.env.DB_CONN);
-    const database = client.db('sammelstatistik');
-    const settings = database.collection('settings');
-
-    try {
-        const query = { "name": name };
-        const options = {
-            projection: { _id: 0 }
-        };
-        
-        return await settings.findOne(query, options);    
-    }
-    catch(err) {
-        console.log(err.message)
-    }
-    finally {
-        await client.close();
-    }
-}
-
 async function getSignatures(values) {
     const client = new MongoClient(process.env.DB_CONN);
     const database = client.db('sammelstatistik');
@@ -75,4 +54,44 @@ async function deleteSignature(id) {
     }
 }
 
-module.exports = { findInSettings, getSignatures, addSignature, deleteSignature }; 
+async function getGoal(name) {
+    const client = new MongoClient(process.env.DB_CONN);
+    const database = client.db('sammelstatistik');
+    const goals = database.collection('goals');
+
+    try {
+        const query = { "name": name };
+        const options = {
+            projection: { _id: 0 }
+        };
+        
+        return await goals.findOne(query, options);    
+    } catch (err) {
+        console.log(err.message);        
+    }
+    finally {
+        client.close();
+    }
+}
+
+async function getUser(name) {
+    const client = new MongoClient(process.env.DB_CONN);
+    const database = client.db('sammelstatistik');
+    const users = database.collection('users');
+
+    try {
+        const query = { "name": name };
+        const options = {
+            projection: { _id: 0 }
+        };
+        
+        return await users.findOne(query, options);    
+    } catch (err) {
+        console.log(err.message);        
+    }
+    finally {
+        client.close();
+    }
+}
+
+module.exports = { getSignatures, addSignature, deleteSignature, getGoal, getUser }; 

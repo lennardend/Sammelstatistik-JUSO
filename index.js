@@ -107,9 +107,9 @@ app.get('/admin/login', initializeForAPI,
 //check sent login data, if correct user-Cookie gets set
 app.post('/admin/login', isInitialized, async (req, res) => {
     const password = req.body.password.trim();
-    const user = await require('./database/db.js').findInSettings('admin');
+    const user = await require('./database/db.js').getUser('admin');
 
-    await bcrypt.compare(password, user.value, async (err, result) => {
+    await bcrypt.compare(password, user.hash, async (err, result) => {
         if (result == true) {
             req.session.user = 'admin';
             res.redirect('/admin/console');
