@@ -52,11 +52,11 @@ function isAuthenticatedAsAdmin(req, res, next) {
 }
 //Gets path for api
 function getAPIPath(req, res, next) {
-    const method = req.method.toLowerCase();
+    const method = req.method.charAt(0).toUpperCase() + req.method.slice(1);
     const func = req.params.function;
 
-    const path = `./api/get_${func}.js`;
-    const adminPath = `./api/(${method}_${func}).js`;
+    const path = `./api/get${func}.js`;
+    const adminPath = `./api/(${method}${func}).js`;
 
     if (fs.existsSync(path)) {
         res.locals.apiPath = path;

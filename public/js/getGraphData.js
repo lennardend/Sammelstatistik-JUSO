@@ -15,7 +15,7 @@ async function getTotal() {
 async function getMonth() {
     var response = await fetch("/api/month");
     var data = await response.json();
-    
+
     const totalMonat = data.total;
     const gesammeltMonat = data.gesammelt;
 
@@ -46,7 +46,7 @@ async function getTop() {
 }
 
 async function getTopMonth() {
-    var response = await fetch("/api/topmonth");
+    var response = await fetch("/api/topMonth");
     var data = await response.json();
 
     data.forEach(person => {
