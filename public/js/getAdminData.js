@@ -23,86 +23,92 @@ async function deleteSignature(row) {
 }
 
 //Daten für Dropdown herunterladen und einfügen
-fetch("/api/names")
-    .then((response) => response.json())
-    .then((data) => {
-        const dropdown = document.getElementById("name-input");
+async function loadNameDropdown() {
+    var response = await fetch("/api/names");
+    var data = await response.json();
 
-        const inputNewName = document.createElement("input");
-        inputNewName.setAttribute("type", "text");
-        inputNewName.setAttribute("name", "new-name");
-        inputNewName.setAttribute("id", "newName-input");
-        inputNewName.setAttribute("placeholder", "neuer Name");
+    const dropdown = document.getElementById("name-input");
 
-        dropdown.addEventListener("change", () => {
-            if (dropdown.value == "new") {
-                dropdown.after(inputNewName);
-            }
-            else {
-                if (document.body.contains(inputNewName)) inputNewName.remove();
-            }
-        });
+    const inputNewName = document.createElement("input");
+    inputNewName.setAttribute("type", "text");
+    inputNewName.setAttribute("name", "new-name");
+    inputNewName.setAttribute("id", "newName-input");
+    inputNewName.setAttribute("placeholder", "neuer Name");
 
-        dropdown.innerHTML += '<option value="">---</option>';
-        for (var i = 0; i < data.length; i++) {
-            const option = `<option value="${data[i]}">${data[i]}</option>`;
-            dropdown.innerHTML += option;
+    dropdown.addEventListener("change", () => {
+        if (dropdown.value == "new") {
+            dropdown.after(inputNewName);
         }
-        dropdown.innerHTML += '<option value="new">neue*r Sammler*in</option>';
-
-        //set date in selector to today
-        const date = new Date(Date.now()).toISOString().split("T")[0];
-        document.getElementById("date-input").setAttribute("value", date);
+        else {
+            if (document.body.contains(inputNewName)) inputNewName.remove();
+        }
     });
+
+    dropdown.innerHTML += '<option value="">---</option>';
+    for (var i = 0; i < data.length; i++) {
+        const option = `<option value="${data[i]}">${data[i]}</option>`;
+        dropdown.innerHTML += option;
+    }
+    dropdown.innerHTML += '<option value="new">neue*r Sammler*in</option>';
+
+    //set date in selector to today
+    const date = new Date(Date.now()).toISOString().split("T")[0];
+    document.getElementById("date-input").setAttribute("value", date);
+}
 
 //Daten für Tabelle herunterladen
-fetch("/api/signatures")
-    .then((response) => response.json())
-    .then((data) => {
-        const table = document.getElementById("signature-table");
-        table.innerHTML = '';
+async function loadSignatureTable() {
+    var response = await fetch("/api/signatures");
+    var data = await response.json();
 
-        var dataArray = [];
-        data.forEach(signature => {
-            const name = signature.name;
-            const amount = signature.amount;
-            const id = signature._id;
-            var date = '';
-            if (signature.date != undefined) date = new Date(signature.date);
+    const table = document.getElementById("signature-table");
+    table.innerHTML = '';
 
-            dataArray.push([id, date, name, amount]);
-        });
+    var dataArray = [];
+    data.forEach(signature => {
+        const name = signature.name;
+        const amount = signature.amount;
+        const id = signature._id;
+        var date = '';
+        if (signature.date != undefined) date = new Date(signature.date);
 
-        //sort alphabetically
-        dataArray.sort((a, b) => { return a[2].localeCompare(b[2]) });
-        //sort by signature amount
-        dataArray.sort((a, b) => { return b[3] - a[3] });
-        //sort by date
-        dataArray.sort((a, b) => { return b[1] - a[1] });
-        //format date string
-        for (var i=0; i < dataArray.length; i++) {
-            if (dataArray[i][1] != '') dataArray[i][1] = dataArray[i][1].toLocaleDateString('de-CH');
-        }
-
-        new gridjs.Grid({
-            columns: [{
-                name: 'id',
-                hidden: true
-            }, "Datum", "Name", "Anzahl",
-            {
-                name: '🗑️',
-                sort: false,
-                formatter: (cell, row) => {
-                    return gridjs.h("button", {
-                        onclick: () => deleteSignature(row)
-                    }, "🗑️");
-                }
-            }],
-            sort: true,
-            search: true,
-            width: 500,
-            resizable: true,
-            pagination: { limit: 10 },
-            data: dataArray
-        }).render(table);
+        dataArray.push([id, date, name, amount]);
     });
+
+    //sort alphabetically
+    dataArray.sort((a, b) => { return a[2].localeCompare(b[2]) });
+    //sort by signature amount
+    dataArray.sort((a, b) => { return b[3] - a[3] });
+    //sort by date
+    dataArray.sort((a, b) => { return b[1] - a[1] });
+    //format date string
+    for (var i = 0; i < dataArray.length; i++) {
+        if (dataArray[i][1] != '') dataArray[i][1] = dataArray[i][1].toLocaleDateString('de-CH');
+    }
+
+    //render table with grid.js
+    new gridjs.Grid({
+        columns: [{
+            name: 'id',
+            hidden: true
+        }, "Datum", "Name", "Anzahl",
+        {
+            name: '🗑️',
+            sort: false,
+            formatter: (cell, row) => {
+                return gridjs.h("button", {
+                    onclick: () => deleteSignature(row)
+                }, "🗑️");
+            }
+        }],
+        sort: true,
+        search: true,
+        width: 500,
+        resizable: true,
+        pagination: { limit: 10 },
+        data: dataArray
+    }).render(table);
+}
+
+loadNameDropdown();
+loadSignatureTable();

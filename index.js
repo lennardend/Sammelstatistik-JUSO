@@ -23,9 +23,11 @@ app.use(session({
 }));
 
 //ERRORS
+//401: Unauthorized
 function error401(res) {
-    res.status(401).send('<pre>Ur so not allowed to do that</pre>');
+    res.status(401).redirect('/');
 }
+//404: Not Found
 function error404(req, res) {
     res.status(404).send(`<pre>Cannot ${req.method} ${req.path}</pre>`);
 }
@@ -50,11 +52,11 @@ function isAuthenticatedAsAdmin(req, res, next) {
 }
 //Gets path for api
 function getAPIPath(req, res, next) {
-    const method = req.method.toLowerCase();
+    const method = req.method.charAt(0).toUpperCase() + req.method.slice(1);
     const func = req.params.function;
 
-    const path = `./api/get_${func}.js`;
-    const adminPath = `./api/(${method}_${func}).js`;
+    const path = `./api/get${func}.js`;
+    const adminPath = `./api/(${method}${func}).js`;
 
     if (fs.existsSync(path)) {
         res.locals.apiPath = path;
@@ -107,9 +109,9 @@ app.get('/admin/login', initializeForAPI,
 //check sent login data, if correct user-Cookie gets set
 app.post('/admin/login', isInitialized, async (req, res) => {
     const password = req.body.password.trim();
-    const user = await require('./database/db.js').findInSettings('admin');
+    const user = await require('./database/db.js').getUser('admin');
 
-    await bcrypt.compare(password, user.value, async (err, result) => {
+    await bcrypt.compare(password, user.hash, async (err, result) => {
         if (result == true) {
             req.session.user = 'admin';
             res.redirect('/admin/console');

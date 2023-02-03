@@ -3,9 +3,9 @@ const db = require('../database/db.js');
 async function getData() {
     //findet entweder eintrag für Monat in datenbank, oder default (monat)
     const month = new Date(Date.now()).toLocaleString('de', { month: 'long' });    
-    var target = await db.findInSettings(month);    
+    var target = await db.getGoals(month);    
     if (target == null) {
-        target = await db.findInSettings('monat');
+        target = await db.getGoals('month');
     }
 
     const signatures = await db.getSignatures({ _id: 0, name: 1, amount: 1, date: 1 });

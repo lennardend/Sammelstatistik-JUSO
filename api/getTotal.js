@@ -3,7 +3,7 @@ const db = require('../database/db.js');
 async function getData() {
     var data = {};
 
-    const total = await db.findInSettings('total');
+    const total = await db.getGoals('total');
     data.total = total.value;
 
     const signatures = await db.getSignatures({ _id: 0, amount: 1 });
