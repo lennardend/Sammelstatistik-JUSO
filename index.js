@@ -52,8 +52,8 @@ function isAuthenticatedAsAdmin(req, res, next) {
 }
 //Gets path for api
 function getAPIPath(req, res, next) {
-    const method = req.method.charAt(0).toUpperCase() + req.method.slice(1);
-    const func = req.params.function;
+    const method = req.method.toLowerCase();
+    const func = req.params.function.charAt(0).toUpperCase() + req.params.function.slice(1);
 
     const path = `./api/get${func}.js`;
     const adminPath = `./api/(${method}${func}).js`;
