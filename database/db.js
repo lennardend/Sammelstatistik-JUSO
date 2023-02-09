@@ -97,4 +97,23 @@ async function getUser(name) {
     }
 }
 
-module.exports = { getSignatures, addSignature, deleteSignature, getGoals, getUser }; 
+async function setUser(name, passwordHash) {
+    const client = new MongoClient(process.env.DB_CONN);
+    const database = client.db('sammelstatistik');
+    const users = database.collection('users');
+
+    try {
+        const filter = { "name": name };
+        const options = { upsert: true }; //creates user if not already existing
+        const update = { $set: { hash: passwordHash } }
+
+        await users.updateOne(filter, update, options);
+    } catch (err) {
+        console.log(err.message);        
+    }
+    finally {
+        client.close();
+    }
+}
+
+module.exports = { getSignatures, addSignature, deleteSignature, getGoals, getUser, setUser }; 

@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <p>
     <form action="/api/signature" method="post" id="signature-form">
         <label for="name-input">Neue Unterschriftenanzahl hinzufügen:</label><br>
         <select name="name" id="name-input"></select>
@@ -23,12 +24,26 @@
         <input type="date" id="date-input" name="date">
         <input type="submit" value="Speichern">
     </form>
-    <br>
+    </p>
+    <p>
     <table id="signature-table"></table>
-    <br>
+    </p>
+    <p>
+    <form action="/api/password" method="post">
+        <label for="password1-input">Neues Admin-Passwort eingeben:</label>
+        <input type="password" name="password1" id="password1-input">
+        <br>
+        <label for="password2-input">Admin-Passwort bestätigen:</label>
+        <input type="password" name="password2" id="password2-input">
+        <br>
+        <input type="submit" value="Passwort ändern">
+    </form>
+    </p>
+    <p>
     <form action="/admin/logout" method="post">
         <button type="submit">Logout</button>
     </form>
+    </p>
 </body>
 
 </html>
