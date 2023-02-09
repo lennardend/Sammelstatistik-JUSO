@@ -66,7 +66,10 @@ function getAPIPath(req, res, next) {
         res.locals.apiPath = adminPath;
 
         if (req.session.user == 'admin') next();
-        else error401(res);
+        else {
+            console.log(`Someone tried to access '${adminPath}' (URI: '${req.originalUrl}') without being logged in as 'admin'`);
+            error401(res);
+        }
     }
     else {
         console.warn(`Couldnt find '${path}' or '${adminPath}'`);
