@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <p>
+    <p id="add-signature">
     <form action="/api/signature" method="post" id="signature-form">
         <label for="name-input">Neue Unterschriftenanzahl hinzufügen:</label><br>
         <select name="name" id="name-input"></select>
@@ -25,25 +25,33 @@
         <input type="submit" value="Speichern">
     </form>
     </p>
-    <p>
-    <table id="signature-table"></table>
-    </p>
-    <p>
-    <form action="/api/password" method="post">
-        <label for="password1-input">Neues Admin-Passwort eingeben:</label>
-        <input type="password" name="password1" id="password1-input">
-        <br>
-        <label for="password2-input">Admin-Passwort bestätigen:</label>
-        <input type="password" name="password2" id="password2-input">
-        <br>
-        <input type="submit" value="Passwort ändern">
-    </form>
-    </p>
-    <p>
-    <form action="/admin/logout" method="post">
-        <button type="submit">Logout</button>
-    </form>
-    </p>
+    <div id="signature-list">
+        <table id="signature-table"></table>
+    </div>
+    <div id="change-goals">
+        <form action="/api/goal" method="post">
+            <label for="goal-name-input">Ziele anpassen:</label><br>
+            <select name="goal" id="goal-name-input"></select>
+            <input type="text" name="amount" id="goal-amount-input" placeholder="z.B. 250">
+            <input type="submit" value="Ändern">
+        </form>
+    </div>
+    <div id="admin-password">
+        <form action="/api/password" method="post">
+            <label for="password1-input">Neues Admin-Passwort eingeben:</label>
+            <input type="password" name="password1" id="password1-input">
+            <br>
+            <label for="password2-input">Admin-Passwort bestätigen:</label>
+            <input type="password" name="password2" id="password2-input">
+            <br>
+            <input type="submit" value="Passwort ändern">
+        </form>
+    </div>
+    <div id="logout">
+        <form action="/admin/logout" method="post">
+            <input type="submit" value="Logout">
+        </form>
+    </div>
 </body>
 
 </html>

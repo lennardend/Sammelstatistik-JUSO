@@ -45,10 +45,10 @@ async function loadNameDropdown() {
     });
 
     dropdown.innerHTML += '<option value="">---</option>';
-    for (var i = 0; i < data.length; i++) {
-        const option = `<option value="${data[i]}">${data[i]}</option>`;
+    data.forEach((name) => {
+        const option = `<option value="${name}">${name}</option>`;
         dropdown.innerHTML += option;
-    }
+    })
     dropdown.innerHTML += '<option value="new">neue*r Sammler*in</option>';
 
     //set date in selector to today
@@ -93,7 +93,7 @@ async function loadSignatureTable() {
             hidden: true
         }, "Datum", "Name", "Anzahl",
         {
-            name: '🗑️',
+            name: 'Eintrag löschen',
             sort: false,
             formatter: (cell, row) => {
                 return gridjs.h("button", {
@@ -103,12 +103,46 @@ async function loadSignatureTable() {
         }],
         sort: true,
         search: true,
-        width: 500,
+        width: 600,
         resizable: true,
         pagination: { limit: 10 },
         data: dataArray
     }).render(table);
 }
 
+async function loadGoalDropdown() {
+    var response = await fetch("/api/goals");
+    var data = await response.json();
+
+    const dropdown = document.getElementById("goal-name-input");
+
+    dropdown.addEventListener("change", () => {
+        const amount = document.getElementById("goal-amount-input");
+        const goal = data.find(goal => goal.name == dropdown.value);                
+
+        if (goal == undefined) {
+            amount.setAttribute("placeholder", "z.B. 250");
+            amount.value = '';
+        }
+        else {
+            amount.value = goal.value;
+        }
+    })
+
+    dropdown.innerHTML += `<option value="total">Total</option>
+    <option value="month">Month</option>`;
+
+    for (var i=0; i < 12; i++) {
+        var date = new Date(Date.now());
+        date.setMonth(i);
+        const month = date.toLocaleString('en', { month: 'long' });
+        dropdown.innerHTML += `<option value="${month}">${month}</option>`;
+    }
+    
+    const amount = document.getElementById("goal-amount-input");
+    amount.value = data.find(goal => goal.name == dropdown.value).value;
+}
+
 loadNameDropdown();
 loadSignatureTable();
+loadGoalDropdown();

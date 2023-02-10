@@ -2,7 +2,7 @@ const db = require('../database/db.js');
 
 async function getData() {
     //findet entweder eintrag für Monat in datenbank, oder default (monat)
-    const month = new Date(Date.now()).toLocaleString('de', { month: 'long' });    
+    const month = new Date(Date.now()).toLocaleString('en', { month: 'long' });
     var target = await db.getGoals(month);    
     if (target == null) {
         target = await db.getGoals('month');
