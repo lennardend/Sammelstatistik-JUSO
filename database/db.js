@@ -77,6 +77,40 @@ async function getGoals(name) {
     }
 }
 
+async function setGoal(name, amount) {
+    const client = new MongoClient(process.env.DB_CONN);
+    const database = client.db('sammelstatistik');
+    const goals = database.collection('goals');
+
+    try {
+        const filter = { 'name': name };
+        const options = { upsert: true }; //creates user if not already existing
+        const update = { $set: { 'value': amount } }
+
+        await goals.updateOne(filter, update, options);
+    } catch (err) {
+        console.log(err.message);        
+    }
+    finally {
+        client.close();
+    }
+}
+
+async function deleteGoal(name) {
+    const client = new MongoClient(process.env.DB_CONN);
+    const database = client.db('sammelstatistik');
+    const goals = database.collection('goals');
+
+    try {
+        await goals.deleteOne({ "name": name });
+    } catch (err) {
+        console.log(err.message);        
+    }
+    finally {
+        client.close();
+    }
+}
+
 async function getUser(name) {
     const client = new MongoClient(process.env.DB_CONN);
     const database = client.db('sammelstatistik');
@@ -97,4 +131,23 @@ async function getUser(name) {
     }
 }
 
-module.exports = { getSignatures, addSignature, deleteSignature, getGoals, getUser }; 
+async function setUser(name, passwordHash) {
+    const client = new MongoClient(process.env.DB_CONN);
+    const database = client.db('sammelstatistik');
+    const users = database.collection('users');
+
+    try {
+        const filter = { "name": name };
+        const options = { upsert: true }; //creates user if not already existing
+        const update = { $set: { hash: passwordHash } }
+
+        await users.updateOne(filter, update, options);
+    } catch (err) {
+        console.log(err.message);        
+    }
+    finally {
+        client.close();
+    }
+}
+
+module.exports = { getSignatures, addSignature, deleteSignature, getGoals, setGoal, deleteGoal, getUser, setUser }; 
