@@ -133,6 +133,38 @@ li {
 }
 
 
+<<<<<<< Updated upstream
+=======
+li:first-child {
+
+    animation: colorRotate 3s linear 0s infinite;
+    -webkit-text-stroke-width: 0.1vw;
+    -webkit-text-stroke-color: colorRotate 6s linear 0s infinit;
+}
+
+@keyframes colorRotate {
+    from {
+        color: #ff0000;
+    }
+
+    25% {
+        color: #ffff00;
+    }
+
+    50% {
+        color: #00ff00;
+    }
+
+    75% {
+        color: #0000ff;
+    }
+
+    100% {
+        color: #ff00c8;
+    }
+}
+
+>>>>>>> Stashed changes
 @media only screen and (max-width: 800px) {
 
     #top {
