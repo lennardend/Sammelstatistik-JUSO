@@ -134,13 +134,11 @@ li {
 
 
 li:first-child {
-
-    animation: colorRotate1 3s linear 0s infinite;
-    -webkit-text-stroke-width: 0.1vw;
-    -webkit-text-stroke-color: colorRotate2 6s linear 0s infinit;
+    animation: colorRotate 3s linear 0s infinite;
 }
 
-@keyframes colorRotate1 {
+
+@keyframes colorRotate {
     from {
         color: #ff0000;
     }
@@ -159,28 +157,6 @@ li:first-child {
 
     100% {
         color: #ff00c8;
-    }
-}
-
-@keyframes colorRotate2 {
-    from {
-        color: #ff00c8;
-    }
-
-    25% {
-        color: #ff0000;
-    }
-
-    50% {
-        color: #ffff00;
-    }
-
-    75% {
-        color: #00ff00;
-    }
-
-    100% {
-        color: #0000ff;
     }
 }
 
