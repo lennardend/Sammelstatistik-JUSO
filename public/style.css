@@ -133,6 +133,58 @@ li {
 }
 
 
+li:first-child {
+
+    animation: colorRotate1 3s linear 0s infinite;
+    -webkit-text-stroke-width: 0.1vw;
+    -webkit-text-stroke-color: colorRotate2 6s linear 0s infinit;
+}
+
+@keyframes colorRotate1 {
+    from {
+        color: #ff0000;
+    }
+
+    25% {
+        color: #ffff00;
+    }
+
+    50% {
+        color: #00ff00;
+    }
+
+    75% {
+        color: #0000ff;
+    }
+
+    100% {
+        color: #ff00c8;
+    }
+}
+
+@keyframes colorRotate2 {
+    from {
+        color: #ff00c8;
+    }
+
+    25% {
+        color: #ff0000;
+    }
+
+    50% {
+        color: #ffff00;
+    }
+
+    75% {
+        color: #00ff00;
+    }
+
+    100% {
+        color: #0000ff;
+    }
+}
+
+
 @media only screen and (max-width: 800px) {
 
     #top {
@@ -145,12 +197,12 @@ li {
 
     }
 
-    #total{
+    #total {
         flex-direction: column;
         height: 20vh;
     }
 
-    #graph1{
+    #graph1 {
         width: 80vw;
     }
 
@@ -170,8 +222,8 @@ li {
         width: 100vw;
     }
 
-    h1{
-        font-size: 8vw; 
+    h1 {
+        font-size: 8vw;
     }
 
     p {
