@@ -7,6 +7,10 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 
+//Inform about current environment
+//allow access to api and admin-panel without authentication
+console.info(`Environment: ${process.env.NODE_ENV}`);
+
 //needed to get body of request
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -41,6 +45,7 @@ function initializeForAPI(req, res, next) {
 
 function isInitialized(req, res, next) {
     if (req.session.initialized) next();
+    else if (process.env.NODE_ENV == 'development') next();
     else {
         error401(res);
     }
@@ -48,6 +53,7 @@ function isInitialized(req, res, next) {
 //checking before access if user is authenticated as admin
 function isAuthenticatedAsAdmin(req, res, next) {
     if (req.session.user == 'admin') next();
+    else if (process.env.NODE_ENV == 'development') next();
     else res.redirect('/admin/login');
 }
 //Gets path for api
@@ -66,6 +72,7 @@ function getAPIPath(req, res, next) {
         res.locals.apiPath = adminPath;
 
         if (req.session.user == 'admin') next();
+        else if (process.env.NODE_ENV == 'development') next();
         else {
             console.log(`Someone tried to access '${adminPath}' (URI: '${req.originalUrl}') without being logged in as 'admin'`);
             error401(res);
