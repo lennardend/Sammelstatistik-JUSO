@@ -1,18 +1,19 @@
 const db = require('../database/db.js');
 
 async function getData() {
-    const signatures = await db.getSignatures({ _id: 0, name: 1 });
-
-    names = [];
-    for (var i = 0; i < signatures.length; i++) {
-        const name = signatures[i].name;
-
-        if (!names.includes(name)) {
-            names.push(name);
+    const signatures = await db.aggregateSignatures([
+        {
+          '$group': {
+            '_id': null, 
+            'names': {
+              '$addToSet': '$name'
+            }
+          }
         }
-    }
-
-    return names;
+    ]);
+    
+    //sort db-output, isn't possible with queries
+    return signatures[0].names.sort((a, b) => a.localeCompare(b));
 }
 
 module.exports = { getData };
