@@ -26,7 +26,7 @@ async function getData() {
     //sortiern für anzahl unterschriften
     sortedSignatures.sort((a, b) => b.amount - a.amount);
     
-    //nur ersten 3 in array zurückgeben
+    //nur ersten 5 in array zurückgeben
     return sortedSignatures.slice(0, 5);
 }
 
