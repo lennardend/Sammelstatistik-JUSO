@@ -3,32 +3,29 @@ const db = require('../database/db.js');
 async function getData() {
     signatures = await db.aggregateSignatures([
         {
-            '$group': {
-                '_id': '$name', 
-                'amount': {
-                    '$sum': '$amount'
+            "$group": {
+                "_id": "$name", 
+                "amount": {
+                    "$sum": "$amount"
                 }
             }
         }, {
-            '$match': {
-                'amount': {
-                    '$gte': 20
-                }
+            "$addFields": {
+                "name": "$_id"
             }
         }, {
-            '$addFields': {
-                'name': '$_id'
+            "$unset": "_id"
+        }, {
+            "$sort": {
+                "amount": -1, 
+                "name": 1
             }
         }, {
-            '$sort': {
-                'amount': -1,
-                'name': 1
-            }
+            "$limit": 5
         }
     ]);
-    
-    //nur ersten 5 in array zurückgeben
-    return signatures;
+
+    return signatures.filter(object => { return object.name !== "Flyers" });
 }
 
 module.exports = { getData };
