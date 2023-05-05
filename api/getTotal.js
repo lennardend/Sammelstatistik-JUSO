@@ -6,13 +6,16 @@ async function getData() {
     const total = await db.getGoals('total');
     data.total = total.value;
 
-    const signatures = await db.getSignatures({ _id: 0, amount: 1 });
+    const signatures = await db.aggregateSignatures([{
+        $group: {
+            _id: {},
+            total: {
+                $sum: "$amount"
+            }
+        }
+    }]);
 
-    var amount = 0;
-    for (var i = 0; i < signatures.length; i++) {
-        amount += signatures[i].amount;
-    }
-    data.gesammelt = amount;   
+    data.gesammelt = signatures[0].total;
 
     return data;
 }

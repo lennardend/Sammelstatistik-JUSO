@@ -23,6 +23,23 @@ async function getSignatures(values) {
     }
 }
 
+async function aggregateSignatures(pipeline) {
+    const client = new MongoClient(process.env.DB_CONN);
+    const database = client.db('sammelstatistik');
+    const signatures = database.collection('signatures');
+
+    try {
+        const cursor = await signatures.aggregate(pipeline)
+        return await cursor.toArray();
+    }
+    catch(err) {
+        console.log(err.message)
+    }
+    finally {
+        await client.close();
+    }
+}
+
 async function addSignature(data) {
     const client = new MongoClient(process.env.DB_CONN);
     const database = client.db('sammelstatistik');
@@ -150,4 +167,4 @@ async function setUser(name, passwordHash) {
     }
 }
 
-module.exports = { getSignatures, addSignature, deleteSignature, getGoals, setGoal, deleteGoal, getUser, setUser }; 
+module.exports = { getSignatures, aggregateSignatures, addSignature, deleteSignature, getGoals, setGoal, deleteGoal, getUser, setUser }; 
