@@ -8,8 +8,8 @@ async function getData() {
         target = await db.getGoals('month');
     }
 
-    currentYear = new Date().getFullYear()
-    currentMonth = new Date().getMonth()
+    currentYear = new Date().getFullYear();
+    currentMonth = new Date().getMonth();
     const signatures = await db.aggregateSignatures([
         {
           '$match': {
@@ -28,7 +28,7 @@ async function getData() {
         }
       ]);
 
-    data = {}
+    data = {};
     data.total = target.value;
     data.gesammelt = signatures[0].amount;
 
