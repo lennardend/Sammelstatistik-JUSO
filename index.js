@@ -10,6 +10,7 @@ const fs = require('fs');
 //Inform about current environment
 //allow access to api and admin-panel without authentication
 console.info(`Environment: ${process.env.NODE_ENV}`);
+if (process.env.NODE_ENV === 'development') isDevEnvironment = true;
 
 //needed to get body of request
 app.use(express.json());
@@ -45,7 +46,7 @@ function initializeForAPI(req, res, next) {
 
 function isInitialized(req, res, next) {
     if (req.session.initialized) next();
-    else if (process.env.NODE_ENV == 'development') next();
+    else if (isDevEnvironment) next();
     else {
         error401(res);
     }
@@ -53,7 +54,7 @@ function isInitialized(req, res, next) {
 //checking before access if user is authenticated as admin
 function isAuthenticatedAsAdmin(req, res, next) {
     if (req.session.user == 'admin') next();
-    else if (process.env.NODE_ENV == 'development') next();
+    else if (isDevEnvironment) next();
     else res.redirect('/admin/login');
 }
 //Gets path for api
