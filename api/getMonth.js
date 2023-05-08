@@ -8,22 +8,29 @@ async function getData() {
         target = await db.getGoals('month');
     }
 
-    const signatures = await db.getSignatures({ _id: 0, name: 1, amount: 1, date: 1 });
-
-    data = {}
-    data.total = target.value;
-
-    const currentDate = new Date(Date.now());
-    var amount = 0;
-    for (var i = 0; i < signatures.length; i++) {
-        var signature = signatures[i];
-        var date = new Date(signature.date);
-
-        if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth()) {
-            amount += signature.amount;
+    currentYear = new Date().getFullYear();
+    currentMonth = new Date().getMonth();
+    const signatures = await db.aggregateSignatures([
+        {
+          '$match': {
+            'date': {
+              '$gte': new Date(currentYear, currentMonth, 1), 
+              '$lt': new Date(currentYear, currentMonth+1, 1)
+            }
+          }
+        }, {
+          '$group': {
+            '_id': {}, 
+            'amount': {
+              '$sum': '$amount'
+            }
+          }
         }
-    }
-    data.gesammelt = amount
+      ]);
+
+    data = {};
+    data.total = target.value;
+    data.gesammelt = signatures[0].amount;
 
     return data;
 }

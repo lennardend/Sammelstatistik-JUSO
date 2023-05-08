@@ -1,37 +1,41 @@
 const db = require('../database/db.js');
 
 async function getData() {
-    signatures = await db.getSignatures({ _id: 0, name: 1, amount: 1, date: 1 });
-
-    const currentDate = new Date(Date.now());
-    var signaturesPerson = {};
-    for (var i = 0; i < signatures.length; i++) {
-        signature = signatures[i];
-        const name = signature.name;
-        const amount = signature.amount;
-        const date = new Date(signature.date);
-
-        if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth()) {
-            if (signaturesPerson[name] == undefined) {
-                signaturesPerson[name] = amount;
-            }
-            else {
-                signaturesPerson[name] += amount;
-            }
-        }
-    }
-
-    let sortedSignatures = [];
-    for (var person in signaturesPerson) {
-        sortedSignatures.push({ "name": person, "amount": signaturesPerson[person] });
-    }
-    //sortieren nach alphabet
-    sortedSignatures.sort((a, b) => a.name.localeCompare(b.name));
-    //sortiern für anzahl unterschriften
-    sortedSignatures.sort((a, b) => b.amount - a.amount);
+    currentYear = new Date().getFullYear();
+    currentMonth = new Date().getMonth();
     
-    //nur ersten 3 in array zurückgeben
-    return sortedSignatures.slice(0, 5);
+    signatures = await db.aggregateSignatures([
+        {
+            '$match': {
+              'date': {
+                '$gte': new Date(currentYear, currentMonth, 1), 
+                '$lt': new Date(currentYear, currentMonth+1, 1)
+              }
+            }
+        }, {
+            '$group': {
+                '_id': '$name',
+                'amount': {
+                    '$sum': '$amount'
+                }
+            }
+        }, {
+            '$addFields': {
+                'name': '$_id'
+            }
+        }, {
+            '$unset': '_id'
+        }, {
+            '$sort': {
+                'amount': -1,
+                'name': 1
+            }
+        }, {
+            '$limit': 5
+        }
+    ]);
+
+    return signatures.filter(object => { return object.name !== 'Flyers' });
 }
 
 module.exports = { getData };
