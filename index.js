@@ -11,6 +11,7 @@ const fs = require('fs');
 //allow access to api and admin-panel without authentication
 console.info(`Environment: ${process.env.NODE_ENV}`);
 if (process.env.NODE_ENV === 'development') isDevEnvironment = true;
+else isDevEnvironment = false;
 
 //needed to get body of request
 app.use(express.json());
@@ -55,7 +56,15 @@ function isInitialized(req, res, next) {
 function isAuthenticatedAsAdmin(req, res, next) {
     if (req.session.user == 'admin') next();
     else if (isDevEnvironment) next();
-    else res.redirect('/admin/login');
+    else {
+        if (req.path.startsWith('/api')) {
+            console.warn(`Someone tried to access '${req.originalUrl}' without being logged in as 'admin'`);
+            error404(req, res);
+        }
+        else {
+            res.redirect('/admin/login');
+        }
+    }
 }
 //Gets path for api
 function getAPIPath(req, res, next) {
@@ -71,13 +80,7 @@ function getAPIPath(req, res, next) {
     }
     else if (fs.existsSync(adminPath)) {
         res.locals.apiPath = adminPath;
-
-        if (req.session.user == 'admin') next();
-        else if (process.env.NODE_ENV == 'development') next();
-        else {
-            console.log(`Someone tried to access '${adminPath}' (URI: '${req.originalUrl}') without being logged in as 'admin'`);
-            error401(res);
-        }
+        isAuthenticatedAsAdmin(req, res, next);
     }
     else {
         console.warn(`Couldnt find '${path}' or '${adminPath}'`);
