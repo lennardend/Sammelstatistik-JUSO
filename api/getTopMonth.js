@@ -30,12 +30,13 @@ async function getData() {
                 'amount': -1,
                 'name': 1
             }
-        }, {
-            '$limit': 5
         }
     ]);
 
-    return signatures.filter(object => { return object.name !== 'Flyers' });
+    signatures = signatures.filter(object => { return object.name !== 'Flyers' })
+    signatures = signatures.slice(0, 5);
+
+    return signatures;    
 }
 
 module.exports = { getData };
