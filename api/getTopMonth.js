@@ -3,6 +3,9 @@ const db = require('../database/db.js');
 async function getData() {
     currentYear = new Date().getFullYear();
     currentMonth = new Date().getMonth();
+
+    var exclusionList = await db.getSetting('excludeFromRanking');
+    exclusionList = exclusionList.value;
     
     signatures = await db.aggregateSignatures([
         {
@@ -33,7 +36,7 @@ async function getData() {
         }
     ]);
 
-    signatures = signatures.filter(object => { return object.name !== 'Flyers' })
+    signatures = signatures.filter(object => { return !exclusionList.includes(object.name) })
     signatures = signatures.slice(0, 5);
 
     return signatures;    
