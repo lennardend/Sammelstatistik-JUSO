@@ -167,4 +167,25 @@ async function setUser(name, passwordHash) {
     }
 }
 
-module.exports = { getSignatures, aggregateSignatures, addSignature, deleteSignature, getGoals, setGoal, deleteGoal, getUser, setUser }; 
+async function getSetting(name) {
+    const client = new MongoClient(process.env.DB_CONN);
+    const database = client.db('sammelstatistik');
+    const settings = database.collection('settings');
+
+    try {
+        const query = { "name": name };
+        const options = {
+            projection: { _id: 0 }
+        };
+        
+        return await settings.findOne(query, options);    
+    } catch (err) {
+        console.log(err.message);        
+    }
+    finally {
+        client.close();
+    }
+
+}
+
+module.exports = { getSignatures, aggregateSignatures, addSignature, deleteSignature, getGoals, setGoal, deleteGoal, getUser, setUser, getSetting }; 

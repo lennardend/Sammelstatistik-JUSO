@@ -1,6 +1,9 @@
 const db = require('../database/db.js');
 
 async function getData() {
+    var exclusionList = await db.getSetting('excludeFromRanking');
+    exclusionList = exclusionList.value;
+
     signatures = await db.aggregateSignatures([
         {
             '$group': {
@@ -20,12 +23,13 @@ async function getData() {
                 'amount': -1,
                 'name': 1
             }
-        }, {
-            '$limit': 5
         }
     ]);
 
-    return signatures.filter(object => { return object.name !== 'Flyers' });
+    signatures = signatures.filter(object => { return !exclusionList.includes(object.name) })
+    signatures = signatures.slice(0, 5);
+
+    return signatures;    
 }
 
 module.exports = { getData };
